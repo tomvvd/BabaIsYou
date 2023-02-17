@@ -1402,7 +1402,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGMpwK8uQ6J+M="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGMpwK8uQ7qnY="
 							},
@@ -1471,7 +1470,7 @@
 											"top": 119,
 											"width": 326.97412109375,
 											"height": 13,
-											"text": "Model"
+											"text": "Game"
 										},
 										{
 											"_type": "LabelView",
@@ -5060,7 +5059,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGVlVB4aTQ0+0="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGVlVB4aTRUHo="
 							},
@@ -5335,7 +5333,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGWmiHYfEJLHg="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGWmiHYfEKXnU="
 							},
@@ -5801,7 +5798,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGWnGJi1s3lRs="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGWnGJi1s4VLw="
 							},
@@ -6071,7 +6067,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGWnIQy2Lrg70="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGWnIQy2LsUiI="
 							},
@@ -6578,7 +6573,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGWpGsebPH/ls="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGWpGsebPIK84="
 							},
@@ -6790,16 +6784,16 @@
 										"$ref": "AAAAAAGGWrm34L8r5aY="
 									},
 									"font": "Arial;13;0",
-									"left": 841,
+									"left": 833,
 									"top": 485,
-									"width": 7.22998046875,
+									"width": 23.12451171875,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
 									"hostEdge": {
 										"$ref": "AAAAAAGGWrm34L8tdto="
 									},
-									"text": "3"
+									"text": "3...*"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -6849,7 +6843,6 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGGWrm34L8wD2U="
 							},
-							"showEndOrder": "hide",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGGWrm34L8x++Y="
 							},
@@ -7375,7 +7368,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Model",
+					"name": "Game",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -7958,7 +7951,7 @@
 									"$ref": "AAAAAAGGMiAxf+NtpeE="
 								},
 								"navigable": "navigable",
-								"multiplicity": "3"
+								"multiplicity": "3...*"
 							}
 						}
 					],
@@ -8330,7 +8323,7 @@
 															"top": 47,
 															"width": 93.7763671875,
 															"height": 13,
-															"text": "model: Model"
+															"text": "game: Game"
 														},
 														{
 															"_type": "LabelView",
@@ -10209,7 +10202,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGGXzVdb6BJvjw="
 									},
-									"name": "model",
+									"name": "game",
 									"represent": {
 										"$ref": "AAAAAAGGXzWAgKCBKiw="
 									},
