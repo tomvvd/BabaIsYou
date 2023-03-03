@@ -5,6 +5,8 @@ add_executable(BabaIsYou
     main.cpp
     MyClass.h
     MyClass.cpp
+    Direction.h
+    Position.h
 )
 
 install(TARGETS BabaIsYou
