@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Direction.h"
 #include "Position.h"
+#include "EntityNature.h"
+#include "EntityType.h"
 
 using namespace std;
 
@@ -11,4 +13,7 @@ int main()
 
     cout << "(" << p1.getRow() << "," << p1.getColumn() << ")" << endl;
     cout << "(" << p2.getRow() << "," << p2.getColumn() << ")" << endl;
+
+    EntityNature n {EntityNature::BABA};
+    EntityType t {EntityType::ELEMENT};
 }

@@ -34,7 +34,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 12,
+				"line" : 15,
 				"parent" : 0
 			}
 		]
@@ -63,7 +63,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				2
+				3
 			]
 		}
 	],
@@ -115,7 +115,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				2
+				3
 			]
 		},
 		{
@@ -123,8 +123,11 @@
 			"sourceIndexes" : 
 			[
 				1,
-				3,
-				4
+				2,
+				4,
+				5,
+				6,
+				7
 			]
 		}
 	],
@@ -138,7 +141,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/MyClass.h",
+			"path" : "src/Direction.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Position.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -149,12 +157,22 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Direction.h",
+			"path" : "src/MyClass.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Position.h",
+			"path" : "src/EntityType.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/EntityNature.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Entity.h",
 			"sourceGroupIndex" : 1
 		}
 	],
