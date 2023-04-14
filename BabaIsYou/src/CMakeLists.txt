@@ -10,6 +10,8 @@ add_executable(BabaIsYou
     EntityType.h
     EntityNature.h
     Entity.h
+    Board.h
+    LevelLoader.h
 )
 
 install(TARGETS BabaIsYou

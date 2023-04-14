@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Direction.h"
+#include "LevelLoader.h"
 #include "Position.h"
 #include "EntityNature.h"
 #include "EntityType.h"

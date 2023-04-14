@@ -1,5 +1,5 @@
 # ninja log v5
-14	199	6995544348758942	src/CMakeFiles/BabaIsYou.dir/MyClass.cpp.obj	689b07043442bb79
+11	502	7032090100573230	src/CMakeFiles/BabaIsYou.dir/MyClass.cpp.obj	689b07043442bb79
 51	953	6995544356312955	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_benchmark_function.cpp.obj	fb95bd70641380b0
 32	218	6995544349078943	tests/CMakeFiles/BabaIsYouTests.dir/__/src/MyClass.cpp.obj	74c719ba75e60c5f
 7938	9452	6995544441402350	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/catch_version.cpp.obj	804740b2419f19aa
@@ -8,11 +8,11 @@
 1803	4243	6995544389073055	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_sonarqube.cpp.obj	f516f93429418ec7
 61	1023	6995544356822622	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/detail/catch_run_for_at_least.cpp.obj	251bfa02533ec2a0
 24	1226	6995544359114417	tests/CMakeFiles/BabaIsYouTests.dir/testMyClass.cpp.obj	4361d84048f0e0d4
-13	494	6995581258548596	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
+6	553	7032125937878574	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
 15735	18354	6995544530134930	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/internal/catch_textflow.cpp.obj	d7d44fffc41749ab
 4378	5353	6995544399946190	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/interfaces/catch_interfaces_reporter_factory.cpp.obj	31f1c858f5fda2cf
 42	1040	6995544357062624	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/benchmark/catch_chronometer.cpp.obj	dc8e511842e4a6a9
-495	680	6995581260256402	src/BabaIsYou.exe	78cfe2559e7918d0
+553	643	7032125938745008	src/BabaIsYou.exe	78cfe2559e7918d0
 18601	25427	6995544600965680	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_string.cpp.obj	b340d6cb951b1a12
 88	1762	6995544364143638	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/reporters/catch_reporter_automake.cpp.obj	8b766bc74b992052
 72	1557	6995544362041914	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/generators/catch_generators.cpp.obj	160f18b16664f0a1
@@ -111,6 +111,13 @@
 18938	21053	6995544557548252	_deps/catch2-build/src/CMakeFiles/Catch2.dir/catch2/matchers/catch_matchers_templated.cpp.obj	ddb97d58301a7334
 31216	31307	6995544660060484	_deps/catch2-build/src/libCatch2Maind.a	7e71f27265840ce9
 31308	38590	6995544732649663	tests/BabaIsYouTests.exe	ca033ba36e159776
-7	501	7032090100573230	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
-11	502	7032090100573230	src/CMakeFiles/BabaIsYou.dir/MyClass.cpp.obj	689b07043442bb79
-503	842	7032090103935628	src/BabaIsYou.exe	78cfe2559e7918d0
+6	351	7032152273066524	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
+352	440	7032152273901707	src/BabaIsYou.exe	78cfe2559e7918d0
+6	346	7032153063259365	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
+347	425	7032153063994279	src/BabaIsYou.exe	78cfe2559e7918d0
+6	563	7032168635085087	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
+564	688	7032168636286772	src/BabaIsYou.exe	78cfe2559e7918d0
+5	528	7032169065240170	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
+529	613	7032169066034698	src/BabaIsYou.exe	78cfe2559e7918d0
+5	470	7032171504338413	src/CMakeFiles/BabaIsYou.dir/main.cpp.obj	7fd12748bd526b0e
+471	548	7032171505068731	src/BabaIsYou.exe	78cfe2559e7918d0
