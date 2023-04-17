@@ -1,5 +1,6 @@
 #include "Board.h"
 #include "Position.h"
+#include "LevelLoader.h"
 #include "Rule.h"
 
 #ifndef GAME_H
@@ -34,7 +35,7 @@ void Game::deleteRules(Position pos){
     //TODO
 }
 void Game::constructLevel(int num){
-    //TODO
+    this->board = LevelLoader::levelLoad(num);
 }
 void Game::move(Direction dir){
     //TODO

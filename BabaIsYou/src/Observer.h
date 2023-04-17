@@ -4,7 +4,7 @@
 class Observer{
     public:
         inline virtual void update();
-        ~Observer() = default;
-}
+        virtual ~Observer() = default;
+};
 
 #endif // OBSERVER_H
