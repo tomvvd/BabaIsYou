@@ -34,7 +34,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 19,
+				"line" : 22,
 				"parent" : 0
 			}
 		]
@@ -131,7 +131,10 @@
 				8,
 				9,
 				10,
-				11
+				11,
+				12,
+				13,
+				14
 			]
 		}
 	],
@@ -197,6 +200,21 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Game.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Controller.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/View.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Observable.h",
 			"sourceGroupIndex" : 1
 		}
 	],

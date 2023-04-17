@@ -14,6 +14,10 @@ add_executable(BabaIsYou
     LevelLoader.h
     Rule.h
     Game.h
+    Controller.h
+    View.h
+    Observable.h
+    Observer.h
 )
 
 install(TARGETS BabaIsYou

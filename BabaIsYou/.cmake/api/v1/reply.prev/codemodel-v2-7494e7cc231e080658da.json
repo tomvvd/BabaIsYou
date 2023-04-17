@@ -23,7 +23,7 @@
 				{
 					"build" : "src",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-src-Debug-c84e05d81ff17cc868cc.json",
+					"jsonFile" : "directory-src-Debug-8888e6403dab501cceb9.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.5"
@@ -128,7 +128,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "BabaIsYou::@145eef247bfb46b6828c",
-					"jsonFile" : "target-BabaIsYou-Debug-f80f7d27a4dcf24cf306.json",
+					"jsonFile" : "target-BabaIsYou-Debug-fe0004c7b9d5f069274e.json",
 					"name" : "BabaIsYou",
 					"projectIndex" : 0
 				},

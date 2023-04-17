@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 8.0.2, 2023-04-17T18:29:41. -->
+<!-- Written by QtCreator 8.0.2, 2023-04-17T19:14:14. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -67,7 +67,11 @@
     <value type="bool" key="AutoTest.Framework.QtQuickTest">true</value>
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
-   <valuemap type="QVariantMap" key="AutoTest.CheckStates"/>
+   <valuemap type="QVariantMap" key="AutoTest.CheckStates">
+    <value type="Qt::CheckState" key="1@C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/catch_template_test_macros.hpp:C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/catch_template_test_macros.hpp">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/tests/testMyClass.cpp:C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/tests/testMyClass.cpp">Checked</value>
+    <value type="Qt::CheckState" key="1@C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/tests/testMyClass.cpp:Test of MyClass">Checked</value>
+   </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
    <valuemap type="QVariantMap" key="ClangTools">

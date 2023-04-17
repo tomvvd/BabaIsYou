@@ -34,7 +34,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 18,
+				"line" : 23,
 				"parent" : 0
 			}
 		]
@@ -130,7 +130,12 @@
 				7,
 				8,
 				9,
-				10
+				10,
+				11,
+				12,
+				13,
+				14,
+				15
 			]
 		}
 	],
@@ -191,6 +196,31 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Rule.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Game.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Controller.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/View.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Observable.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Observer.h",
 			"sourceGroupIndex" : 1
 		}
 	],
