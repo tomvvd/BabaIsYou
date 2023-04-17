@@ -1,10 +1,10 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include "Board.h"
 #include "Position.h"
 #include "LevelLoader.h"
 #include "Rule.h"
-
-#ifndef GAME_H
-#define GAME_H
 
 class Game{
     private:

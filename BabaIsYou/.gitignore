@@ -8,11 +8,19 @@
 # pas de fichier *~
 *~
 
+# CMake build directory
+build/
+
+# Ninja build files
+*.ninja
+*.ninja_log
+
 # pas de fichier .bak
 *.bak
 
 # pas de fichier .o
 *.o
+*.obj
 
 # pas de fichier .so
 *.so
@@ -45,3 +53,12 @@ Makefile.*
 
 # pas de fichier .qmake.stash
 .qmake.stash
+
+# Qt Creator files
+*.autosave
+*.qbs
+*.qmake.stash
+*.pro.user
+*.qbs.user
+*.qmlproject.user
+*.cmake.user

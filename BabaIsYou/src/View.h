@@ -4,6 +4,6 @@
 class View{
     private:
         inline void showBoard();
-}
+};
 
 #endif // VIEW_H

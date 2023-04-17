@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/tests
+# Install script for directory: C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-build/cmake_install.cmake")
+  include("C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/cmake_install.cmake")
 
 endif()
 

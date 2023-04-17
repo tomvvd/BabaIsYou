@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/src
+# Install script for directory: C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/src/BabaIsYou.exe")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/BabaIsYou.exe")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/BabaIsYou.exe" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/BabaIsYou.exe")
     if(CMAKE_INSTALL_DO_STRIP)

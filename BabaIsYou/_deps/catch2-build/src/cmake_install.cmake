@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src/src
+# Install script for directory: C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

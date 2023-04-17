@@ -3,9 +3,9 @@
 # No other meaning or use of this file is supported.
 
 method=git
-command=C:/Qt/Tools/CMake_64/bin/cmake.exe;-P;C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-subbuild/catch2-populate-prefix/tmp/catch2-populate-gitclone.cmake
-source_dir=C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src
-work_dir=C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps
+command=C:/Qt/Tools/CMake_64/bin/cmake.exe;-P;C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-subbuild/catch2-populate-prefix/tmp/catch2-populate-gitclone.cmake
+source_dir=C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src
+work_dir=C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps
 repository=https://github.com/catchorg/Catch2.git
 remote=origin
 init_submodules=TRUE
