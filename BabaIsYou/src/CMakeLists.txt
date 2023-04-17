@@ -13,6 +13,7 @@ add_executable(BabaIsYou
     Board.h
     LevelLoader.h
     Rule.h
+    Game.h
 )
 
 install(TARGETS BabaIsYou
