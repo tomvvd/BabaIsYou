@@ -9,32 +9,28 @@
 class Game{
     private:
         Board board;
-        Position playerPosition;
         vector<Rule> rules;
         bool levelOver;
         bool gameOver;
+        int currentLevel;
 
         inline void addRule(EntityNature subject, EntityNature operation, EntityNature object);
         inline EntityNature applyRule(EntityNature subject);
         inline void deleteRules(Position pos);
+        inline void scan();
     public:
-        Game();
+        inline Game();
         inline void constructLevel(int num);
         inline void move(Direction dir);
         inline bool isGameOver();
         inline bool isLevelOver();
 };
 
-void Game::addRule(EntityNature subject, EntityNature operation, EntityNature object){
-    //TODO
-}
-EntityNature Game::applyRule(EntityNature subject){
-    //TODO
-}
-void Game::deleteRules(Position pos){
-    //TODO
-}
+Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)}, levelOver{false}, gameOver{false} {}
+
 void Game::constructLevel(int num){
+    currentLevel = num;
+    levelOver = false;
     this->board = LevelLoader::levelLoad(num);
 }
 void Game::move(Direction dir){
@@ -45,6 +41,57 @@ bool Game::isGameOver(){
 }
 bool Game::isLevelOver(){
     return this->levelOver;
+}
+
+void Game::scan(){
+    for (int i = 1; i < board.getHeight()-1; ++i) {
+        for (int j = 1; j < board.getWidth()-1; ++j) {
+            Position pos{i,j};
+            vector<Entity> entities{board.getEntities(pos)};
+            for (int k = 0; k < entities.size(); ++k) {
+                if(entities[k].getNature()==EntityNature::IS){
+                    Position posN{pos.next(Direction::UP)};
+                    vector<Entity> entitiesN{board.getEntities(posN)};
+                    if(entitiesN.size()==1){
+                        Entity entityN = entitiesN[0];
+                        if(entityN.getType()==EntityType::TEXT){
+                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER};
+                            if(count(valide.begin(),valide.end(),entityN.getNature())){
+                                Position posS{pos.next(Direction::DOWN)};
+                                vector<Entity> entitiesS{board.getEntities(posN)};
+                                if(entitiesS.size()==1){
+                                    Entity entityS = entitiesS[0];
+                                    if(entityS.getType()==EntityType::TEXT){
+                                        Rule rule {entityN.getNature(),entities[k].getNature(),entityS.getNature()};
+                                        rules.push_back(rule);
+                                    }
+                                }
+                            }
+                        }
+                        Position posW{pos.next(Direction::LEFT)};
+                        vector<Entity> entitiesW{board.getEntities(posW)};
+                        if(entitiesW.size()==1){
+                            Entity entityW = entitiesW[0];
+                            if(entityW.getType()==EntityType::TEXT){
+                                vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER};
+                                if(count(valide.begin(),valide.end(),entityW.getNature())){
+                                    Position posE{pos.next(Direction::RIGHT)};
+                                    vector<Entity> entitiesE{board.getEntities(posE)};
+                                    if(entitiesE.size()==1){
+                                        Entity entityE = entitiesE[0];
+                                        if(entityE.getType()==EntityType::TEXT){
+                                            Rule rule {entityW.getNature(),entities[k].getNature(),entityE.getNature()};
+                                            rules.push_back(rule);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 

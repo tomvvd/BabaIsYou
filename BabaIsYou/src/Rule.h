@@ -9,21 +9,18 @@ using namespace std;
 
 class Rule{
     private:
-        vector<Position> positions;
         EntityNature subject;
         EntityNature operation;
         EntityNature object;
-        int priority;
     public:
-        inline Rule(EntityNature subject, EntityNature operation, EntityNature object, int priority, vector<Position> poss);
+        inline Rule(EntityNature subject, EntityNature operation, EntityNature object);
         inline EntityNature getSubject();
         inline EntityNature getOperation();
         inline EntityNature getObject();
-        inline int getPriority();
-        inline vector<Position> getPositions();
 };
 
-Rule::Rule(EntityNature subj, EntityNature oper, EntityNature obj, int prio, vector<Position> poss):subject {subj}, operation{oper}, object {obj}, priority{prio}, positions {pos};
+Rule::Rule(EntityNature subj, EntityNature oper, EntityNature obj):subject {subj}, operation{oper}, object {obj}{}
+
 EntityNature Rule::getSubject(){
     return this->subject;
 }
@@ -33,12 +30,8 @@ EntityNature Rule::getOperation(){
 EntityNature Rule::getObject(){
     return this->object;
 }
-int Rule::getPriority(){
-    return this->priority;
-}
-vector<Position> Rule::getPositions(){
-    return this->positions;
-}
+
+
 
 
 #endif // RULE_H
