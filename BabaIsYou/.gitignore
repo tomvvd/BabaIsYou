@@ -1,64 +1,14 @@
 # gitignore pour qt creator
-#
-# Ignore all files without extensions (cpp compiled)
-*
-!*.*
-!*/
 
-# pas de fichier *~
-*~
+# Ignore everything except the src and tests directories
+/*
 
-# CMake build directory
-build/
+# Except for the following directories and files:
+!/src/
+!/tests/
+!/levels/
+!CMakeLists.txt
+!*.cpp
+!*.h
+!*.hpp
 
-# Ninja build files
-*.ninja
-*.ninja_log
-
-# pas de fichier .bak
-*.bak
-
-# pas de fichier .o
-*.o
-*.obj
-
-# pas de fichier .so
-*.so
-*.so.*
-
-# pas de fichier .exe
-*.exe
-
-# pas de dossier release
-release/
-
-# pas de dossier debug
-debug/
-
-# pas de dossier build-*
-build-*/
-
-# pas de dossier de doc html / latex
-doc/html/
-doc/latex/
-
-# pas de fichier .user
-*.user
-
-# pas de fichier .user.*
-*.user.*
-
-# pas de fichier Makefile.*
-Makefile.*
-
-# pas de fichier .qmake.stash
-.qmake.stash
-
-# Qt Creator files
-*.autosave
-*.qbs
-*.qmake.stash
-*.pro.user
-*.qbs.user
-*.qmlproject.user
-*.cmake.user
