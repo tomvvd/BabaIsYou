@@ -59,9 +59,9 @@ public:
             while (getline(ssResult, token, ' ')) {
                 result.push_back(token);
             }
-            Position pos {stoi(result.at(2)),stoi(result.at(1))};
+            Position pos {stoi(result.at(2))+1,stoi(result.at(1))+1};
 
-            string input = result.at(2);
+            string input = result.at(0);
 
             if (input == "baba") {
                 board.addEntity(pos,Entity{EntityNature::BABA,EntityType::ELEMENT});

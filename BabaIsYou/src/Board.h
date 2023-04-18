@@ -14,6 +14,8 @@ class Board{
 
 public:
     inline Board(int height, int width);
+    inline int getHeight() const;
+    inline int getWidth() const;
     inline vector<Entity> getEntities(Position pos);
     inline void addEntity(Position pos, Entity entity);
     inline void dropEntity(Position pos, Entity entity);
@@ -24,6 +26,14 @@ inline Board::Board(int height, int width) : height_{height}, width_{width}, ent
     for (int i = 0; i < height; ++i) {
         entities_[i].resize(width);
     }
+}
+
+int Board::getHeight() const{
+    return height_;
+}
+
+int Board::getWidth() const{
+    return width_;
 }
 
 vector<Entity> Board::getEntities(Position pos){
