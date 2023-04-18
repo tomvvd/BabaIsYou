@@ -15,8 +15,6 @@ class Game{
         int currentLevel;
 
         inline void addRule(EntityNature subject, EntityNature operation, EntityNature object);
-        inline EntityNature applyRule(EntityNature subject);
-        inline void deleteRules(Position pos);
         inline void scan();
     public:
         inline Game();
@@ -49,19 +47,42 @@ void Game::move(Direction dir){
         for (int i = 1; i < board.getHeight()-1; ++i) {
             for (int j = 1; j < board.getWidth()-1; ++j) {
                 Position pos {i,j};
-                Position next = pos.next(dir);
+                Position nextPos = pos.next(dir);
                 vector<Entity> entities = board.getEntities(pos);
                 for(Entity entity : entities){
                     if(entity.getType() == EntityType::ELEMENT && entity.getNature() == player){
-                        vector<Entity> nextEntities = board.getEntities(next);
-                        for(Entity entity : nextEntities){
-                            if(entity.getType() == EntityType::TEXT){
-
-                            }
-                            for(Rule rule : rules){
-                                if(rule.getObject() == EntityNature::YOU){
-                                    player = rule.getSubject();
-                                    hasBeenFound = true;
+                        vector<Entity> nextEntities = board.getEntities(nextPos);
+                        if(nextEntities.empty()){
+                            board.dropEntity(pos,entity);
+                            board.addEntity(nextPos,entity);
+                        }
+                        else{
+                            Position nextNextPos = nextPos.next(dir);
+                            vector<Entity> nextNextEntities = board.getEntities(nextNextPos);
+                            for(Entity nextEntity : nextEntities){
+                                if(nextEntity.getType() == EntityType::TEXT){
+                                    if(nextNextEntities.empty()){
+                                        board.dropEntity(pos,entity);
+                                        board.addEntity(nextPos,entity);
+                                        board.dropEntity(nextPos,nextEntity);
+                                        board.addEntity(nextNextPos,nextEntity);
+                                    }
+                                    else{
+                                        bool isMovable{true};
+                                        for (Entity nextNextEntity : nextNextEntities) {
+                                            for (Rule rule : rules) {
+                                                if(rule.getSubject()==nextNextEntity.getNature()){
+                                                    if(rule.getObject()==EntityNature::)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                for(Rule rule : rules){
+                                    if(rule.getObject() == EntityNature::YOU){
+                                        player = rule.getSubject();
+                                        hasBeenFound = true;
+                                    }
                                 }
                             }
                         }
