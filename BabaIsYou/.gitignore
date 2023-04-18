@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c++,qtcreator,cmake
-# Edit at https://www.toptal.com/developers/gitignore?templates=c++,qtcreator,cmake
+# Created by https://www.toptal.com/developers/gitignore/api/c++,qtcreator,cmake,ninja
+# Edit at https://www.toptal.com/developers/gitignore?templates=c++,qtcreator,cmake,ninja
 
 ### C++ ###
 # Prerequisites
@@ -52,6 +52,10 @@ _deps
 # External projects
 *-prefix/
 
+### Ninja ###
+.ninja_deps
+.ninja_log
+
 ### QtCreator ###
 # gitignore for Qt Creator like IDE for pure C/C++ project without Qt
 #
@@ -85,4 +89,4 @@ _deps
 *.cflags
 
 
-# End of https://www.toptal.com/developers/gitignore/api/c++,qtcreator,cmake
+# End of https://www.toptal.com/developers/gitignore/api/c++,qtcreator,cmake,ninja
