@@ -54,6 +54,17 @@ void Game::move(Direction dir){
                 for(Entity entity : entities){
                     if(entity.getType() == EntityType::ELEMENT && entity.getNature() == player){
                         vector<Entity> nextEntities = board.getEntities(next);
+                        for(Entity entity : nextEntities){
+                            if(entity.getType() == EntityType::TEXT){
+
+                            }
+                            for(Rule rule : rules){
+                                if(rule.getObject() == EntityNature::YOU){
+                                    player = rule.getSubject();
+                                    hasBeenFound = true;
+                                }
+                            }
+                        }
                     }
                 }
             }

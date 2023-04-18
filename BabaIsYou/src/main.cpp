@@ -23,6 +23,5 @@ int main()
     //Board board {LevelLoader::levelLoad(0)};
     //View::showBoard(board);
 
-    Game game {};
-    vector<Rule> rules = game.getRules();
+    //Game game {};
 }
