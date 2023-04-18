@@ -52,6 +52,27 @@ void Game::move(Direction dir){
                 for(Entity entity : entities){
                     if(entity.getType() == EntityType::ELEMENT && entity.getNature() == player){
                         vector<Entity> nextEntities = board.getEntities(nextPos);
+                        while (!nextEntities.empty()) {
+                            Position nextTarget = nextPos.next(dir);
+
+                            if(nextEntities.empty()){
+                                board.dropEntity(pos,entity);
+                                board.addEntity(nextPos,entity);
+                            }
+                            else{
+                                vector<Entity> nextTargetEntities = board.getEntities(nextTarget);
+                                for(Entity nextEntity : nextTargetEntities){
+                                    if(nextEntity.getType() == EntityType::TEXT){
+                                        board.dropEntity(pos, entity);
+                                        board.addEntity(nextPos, entity);
+                                        nextEntities = board.getEntities()
+                                    } else {
+
+                                    }
+                                }
+                            }
+                        }
+                        /*
                         if(nextEntities.empty()){
                             board.dropEntity(pos,entity);
                             board.addEntity(nextPos,entity);
@@ -68,24 +89,49 @@ void Game::move(Direction dir){
                                         board.addEntity(nextNextPos,nextEntity);
                                     }
                                     else{
-                                        bool isMovable{true};
-                                        for (Entity nextNextEntity : nextNextEntities) {
-                                            for (Rule rule : rules) {
-                                                if(rule.getSubject()==nextNextEntity.getNature()){
-                                                    if(rule.getObject()==EntityNature::)
+
+                                    }
+                                }
+                            }
+
+
+                            /*
+                            Position nextNextPos = nextPos.next(dir);
+                            vector<Entity> nextNextEntities = board.getEntities(nextNextPos);
+                            for(Entity nextEntity : nextEntities){
+                                if(nextEntity.getType() == EntityType::TEXT){
+                                    if(nextNextEntities.empty()){
+                                        board.dropEntity(pos,entity);
+                                        board.addEntity(nextPos,entity);
+                                        board.dropEntity(nextPos,nextEntity);
+                                        board.addEntity(nextNextPos,nextEntity);
+                                    }
+                                    else{
+                                        while (!nextNextEntities.empty()) {
+                                            Position nextTarget = nextNextPos.next(dir);
+                                            nextNextEntities = board.getEntities(nextTarget);
+
+                                            bool isMovable{true};
+                                            for (Entity nextNextEntity : nextNextEntities) {
+                                                Position nextNextNextPos = nextNextPos.next(dir);
+                                                vector<Entity> nextNextNextEntities = board.getEntities(nextNextNextPos);
+                                                if(nextNextNextEntities.empty()){
+                                                    board.dropEntity(nextNextPos,entity);
+                                                    board.addEntity(nextPos,entity);
+                                                    board.dropEntity(nextPos,nextEntity);
+                                                    board.addEntity(nextNextPos,nextEntity);
+                                                }
+                                                for (Rule rule : rules) {
+                                                    if(rule.getSubject()==nextNextEntity.getNature()){
+                                                        if(rule.getObject()==EntityNature::)
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                for(Rule rule : rules){
-                                    if(rule.getObject() == EntityNature::YOU){
-                                        player = rule.getSubject();
-                                        hasBeenFound = true;
-                                    }
-                                }
                             }
-                        }
+                        }*/
                     }
                 }
             }
