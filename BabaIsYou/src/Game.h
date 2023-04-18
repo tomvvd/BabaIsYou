@@ -26,15 +26,39 @@ class Game{
         inline bool isLevelOver();
 };
 
-Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)}, levelOver{false}, gameOver{false} {}
+Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)}, levelOver{false}, gameOver{false} {
+    scan();
+}
 
 void Game::constructLevel(int num){
     currentLevel = num;
     levelOver = false;
     this->board = LevelLoader::levelLoad(num);
+    scan();
 }
 void Game::move(Direction dir){
-    //TODO
+    EntityNature player;
+    bool hasBeenFound = false;
+    for(Rule rule : rules){
+        if(rule.getObject() == EntityNature::YOU && !hasBeenFound){
+            player = rule.getSubject();
+            hasBeenFound = true;
+        }
+    }
+    if(hasBeenFound){
+        for (int i = 1; i < board.getHeight()-1; ++i) {
+            for (int j = 1; j < board.getWidth()-1; ++j) {
+                Position pos {i,j};
+                Position next = pos.next(dir);
+                vector<Entity> entities = board.getEntities(pos);
+                for(Entity entity : entities){
+                    if(entity.getType() == EntityType::ELEMENT && entity.getNature() == player){
+                        vector<Entity> nextEntities = board.getEntities(next);
+                    }
+                }
+            }
+        }
+    }
 }
 bool Game::isGameOver(){
     return this->gameOver;
@@ -44,6 +68,7 @@ bool Game::isLevelOver(){
 }
 
 void Game::scan(){
+    rules.clear();
     for (int i = 1; i < board.getHeight()-1; ++i) {
         for (int j = 1; j < board.getWidth()-1; ++j) {
             Position pos{i,j};
@@ -68,21 +93,21 @@ void Game::scan(){
                                 }
                             }
                         }
-                        Position posW{pos.next(Direction::LEFT)};
-                        vector<Entity> entitiesW{board.getEntities(posW)};
-                        if(entitiesW.size()==1){
-                            Entity entityW = entitiesW[0];
-                            if(entityW.getType()==EntityType::TEXT){
-                                vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER};
-                                if(count(valide.begin(),valide.end(),entityW.getNature())){
-                                    Position posE{pos.next(Direction::RIGHT)};
-                                    vector<Entity> entitiesE{board.getEntities(posE)};
-                                    if(entitiesE.size()==1){
-                                        Entity entityE = entitiesE[0];
-                                        if(entityE.getType()==EntityType::TEXT){
-                                            Rule rule {entityW.getNature(),entities[k].getNature(),entityE.getNature()};
-                                            rules.push_back(rule);
-                                        }
+                    }
+                    Position posW{pos.next(Direction::LEFT)};
+                    vector<Entity> entitiesW{board.getEntities(posW)};
+                    if(entitiesW.size()==1){
+                        Entity entityW = entitiesW[0];
+                        if(entityW.getType()==EntityType::TEXT){
+                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER};
+                            if(count(valide.begin(),valide.end(),entityW.getNature())){
+                                Position posE{pos.next(Direction::RIGHT)};
+                                vector<Entity> entitiesE{board.getEntities(posE)};
+                                if(entitiesE.size()==1){
+                                    Entity entityE = entitiesE[0];
+                                    if(entityE.getType()==EntityType::TEXT){
+                                        Rule rule {entityW.getNature(),entities[k].getNature(),entityE.getNature()};
+                                        rules.push_back(rule);
                                     }
                                 }
                             }

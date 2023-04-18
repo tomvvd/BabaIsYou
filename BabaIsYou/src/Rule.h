@@ -1,6 +1,8 @@
 #include "EntityNature.h"
 #include "Position.h"
 #include <vector>
+#include <string>
+#include <sstream>
 
 #ifndef RULE_H
 #define RULE_H
@@ -17,6 +19,7 @@ class Rule{
         inline EntityNature getSubject();
         inline EntityNature getOperation();
         inline EntityNature getObject();
+        inline string to_string();
 };
 
 Rule::Rule(EntityNature subj, EntityNature oper, EntityNature obj):subject {subj}, operation{oper}, object {obj}{}
@@ -30,7 +33,6 @@ EntityNature Rule::getOperation(){
 EntityNature Rule::getObject(){
     return this->object;
 }
-
 
 
 

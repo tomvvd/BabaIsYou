@@ -5,6 +5,7 @@
 #include "EntityNature.h"
 #include "EntityType.h"
 #include "View.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -19,6 +20,9 @@ int main()
     EntityNature n {EntityNature::BABA};
     EntityType t {EntityType::ELEMENT};*/
 
-    Board board {LevelLoader::levelLoad(0)};
-    View::showBoard(board);
+    //Board board {LevelLoader::levelLoad(0)};
+    //View::showBoard(board);
+
+    Game game {};
+    vector<Rule> rules = game.getRules();
 }
