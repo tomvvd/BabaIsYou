@@ -25,5 +25,6 @@ int main()
 
     Game game {};
     game.constructLevel(1);
+    game.saveLevel();
     int lol{1};
 }

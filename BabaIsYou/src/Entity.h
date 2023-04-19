@@ -50,7 +50,7 @@ string Entity::to_string() const{
             res = "R";
         }
         else if (nature_ == EntityNature::WALL) {
-            return "W";
+            res = "W";
         }
         else if (nature_ == EntityNature::WATER) {
             res = "#";
