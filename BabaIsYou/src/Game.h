@@ -21,6 +21,8 @@ class Game{
         inline void move(Direction dir);
         inline bool isGameOver();
         inline bool isLevelOver();
+        inline void saveLevel();
+        inline void reloadLevel();
 };
 
 Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)}, levelOver{false}, gameOver{false} {
@@ -134,5 +136,12 @@ void Game::scanRule(){
     }
 }
 
+void Game::saveLevel(){
+    //to do
+}
+
+void Game::reloadLevel(){
+    //to do
+}
 
 #endif // GAME_H
