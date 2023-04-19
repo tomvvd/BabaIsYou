@@ -36,8 +36,13 @@ void Controller::start(){
         else if(input=="d"){
             game.move(Direction::DOWN);
         }
-        else{
+        else if(input=="exit"){
             exit=true;
+        }
+        else if(input=="save"){
+            game.saveLevel();
+        }else{
+            cout << "This isn't a valid command, pleasy try again" << endl;
         }
     }
 }

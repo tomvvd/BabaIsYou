@@ -130,6 +130,7 @@ void Game::move(Direction dir){
             }
         }
     }
+    scanRule();
 }
 
 bool Game::isGameOver(){
