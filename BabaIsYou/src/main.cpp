@@ -23,5 +23,7 @@ int main()
     //Board board {LevelLoader::levelLoad(0)};
     //View::showBoard(board);
 
-    //Game game {};
+    Game game {};
+    game.constructLevel(1);
+    int lol{1};
 }
