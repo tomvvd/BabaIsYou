@@ -26,7 +26,9 @@ class Game{
         inline void saveLevel();
         inline void reloadLevel();
         inline bool isBlocking(Position pos);
-        inline Board getBoard();
+        inline int getBoardHeight() const;
+        inline int getBoardWidth() const;
+        inline vector<Entity> getBoardEntities(Position pos);
 };
 
 Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)}, levelOver{false}, gameOver{false} {
@@ -39,76 +41,97 @@ void Game::constructLevel(int num){
     this->board = LevelLoader::levelLoad(num);
     scanRule();
 }
+
 void Game::move(Direction dir){
-    EntityNature player;
+    vector<EntityNature> entitiesPlayer,entitiesPush, entitiesStop;
     bool hasBeenFound = false;
     for(Rule rule : rules){
-        if(rule.getObject() == EntityNature::YOU && !hasBeenFound){
-            player = rule.getSubject();
+        if(rule.getObject() == EntityNature::YOU){
+            entitiesPlayer.push_back(rule.getSubject());
             hasBeenFound = true;
+        }
+        else if(rule.getObject() == EntityNature::STOP){
+            entitiesStop.push_back(rule.getSubject());
+        }
+        else if(rule.getObject() == EntityNature::PUSH){
+            entitiesPush.push_back(rule.getSubject());
         }
     }
     if(hasBeenFound){
+        vector<pair<Entity,Position>> movePlayers;
         for (int i = 1; i < board.getHeight()-1; ++i) {
             for (int j = 1; j < board.getWidth()-1; ++j) {
                 Position pos {i,j};
-                Position nextPos = pos.next(dir);
                 vector<Entity> entities = board.getEntities(pos);
-                for(Entity entity : entities){
-                    if(entity.getType() == EntityType::ELEMENT && entity.getNature() == player){
-                        vector<Entity> nextEntities = board.getEntities(nextPos);
-                        vector<pair<Entity, Position>> moovable;
-                        if(isBlocking(nextPos)){
-                            break;
-                        } else {
-                            moovable.push_back(pair<Entity, Position> {entity, pos});
-                            while (!nextEntities.empty()) {
-                                if(!isBlocking(nextPos)){
-                                    bool pushable = false;
+                for (EntityNature player:entitiesPlayer) {
+                    for (Entity entity : entities) {
+                        if(entity.getType()==EntityType::ELEMENT && entity.getNature()==player){
+                            bool stop = false;
+                            bool ok = false;
+                            int cpt = 1;
+                            Position next{pos.next(dir)};
+                            while(!stop && !ok){
+                                vector<Entity> nextEntities = board.getEntities(next);
+                                if(!nextEntities.empty()){
                                     for (Entity nextEntity : nextEntities) {
-                                        for(Rule rule : rules){
-                                            if(nextEntity.getType() == EntityType::TEXT
-                                                    || (rule.getSubject() == nextEntity.getNature()
-                                                        && rule.getObject() == EntityNature::PUSH)){
-                                                pushable = true;
-                                                nextPos = nextPos.next(dir);
-                                                nextEntities = board.getEntities(nextPos);
-                                                switch(dir){
-                                                case Direction::DOWN:
-                                                    moovable.push_back(pair<Entity, Position> {nextEntity, nextPos.next(Direction::UP)});
-                                                    break;
-                                                case Direction::UP:
-                                                    moovable.push_back(pair<Entity, Position> {nextEntity, nextPos.next(Direction::DOWN)});
-                                                    break;
-                                                case Direction::LEFT:
-                                                    moovable.push_back(pair<Entity, Position> {nextEntity, nextPos.next(Direction::RIGHT)});
-                                                    break;
-                                                case Direction::RIGHT:
-                                                    moovable.push_back(pair<Entity, Position> {nextEntity, nextPos.next(Direction::LEFT)});
-                                                    break;
-                                                }
-                                            }
+                                        if(count(entitiesStop.begin(),entitiesStop.end(),nextEntity.getNature())){
+                                            stop = true;
+                                        }
+                                        else if(count(entitiesPush.begin(),entitiesPush.end(),nextEntity.getNature())==0){
+                                            ok = true;
+                                        }
+                                        else{
+                                            next = next.next(dir);
+                                            cpt++;
                                         }
                                     }
-                                    if(!pushable){
-                                        for (pair<Entity, Position> pair : moovable) {
-                                            board.dropEntity(pair.second, pair.first);
-                                            Position pos = pair.second;
-                                            board.addEntity(pos.next(dir), pair.first);
-                                        }
-                                        break;
-                                    }
-                                } else{
-                                    break;
+                                }else{
+                                    ok = true;
                                 }
+                            }
+                            if(!stop){
+                                while (cpt>1) {
+                                    Position pos1 = pos;
+                                    for (int k = 0; k < cpt; ++k) {
+                                        pos1 = pos1.next(dir);
+                                    }
+                                    Position pos2 = pos;
+                                    for (int k = 0; k < cpt-1; ++k) {
+                                        pos2 = pos2.next(dir);
+                                    }
+                                    vector<Entity> lol = board.getEntities(pos2);
+                                    for (Entity l : lol) {
+                                        if(count(entitiesPush.begin(),entitiesPush.end(),l.getNature())){
+                                            board.addEntity(pos1,l);
+                                            board.dropEntity(pos2,l);
+                                        }
+                                    }
+                                    cpt--;
+                                }
+                                movePlayers.push_back(make_pair(entity,pos));
                             }
                         }
                     }
                 }
             }
         }
+        if(dir==Direction::LEFT || dir==Direction::UP){
+            for (int i = 0; i < movePlayers.size(); ++i) {
+                pair<Entity,Position> mp = movePlayers[i];
+                board.addEntity(mp.second.next(dir),mp.first);
+                board.dropEntity(mp.second,mp.first);
+            }
+        }
+        if(dir==Direction::RIGHT || dir==Direction::DOWN){
+            for (int i = movePlayers.size()-1; i >= 0; --i) {
+                pair<Entity,Position> mp = movePlayers[i];
+                board.addEntity(mp.second.next(dir),mp.first);
+                board.dropEntity(mp.second,mp.first);
+            }
+        }
     }
 }
+
 bool Game::isGameOver(){
     return this->gameOver;
 }
@@ -277,23 +300,14 @@ void Game::reloadLevel(){
     //to do
 }
 
-/*
- * Méthode qui va chercher si à la position donnée un élément est bloqueur
- */
-bool Game::isBlocking(Position pos){
-    vector<Entity> entities = board.getEntities(pos);
-    for(Entity entity : entities){
-        for(Rule rule : rules){
-            if(rule.getSubject() == entity.getNature() && rule.getObject() == EntityNature::STOP){
-                return true;
-            }
-        }
-    }
-    return false;
+int Game::getBoardHeight() const{
+    return board.getHeight();
 }
-
-Board Game::getBoard(){
-    return this->board;
+int Game::getBoardWidth() const{
+    return board.getWidth();
+}
+vector<Entity> Game::getBoardEntities(Position pos){
+    return board.getEntities(pos);
 }
 
 #endif // GAME_H

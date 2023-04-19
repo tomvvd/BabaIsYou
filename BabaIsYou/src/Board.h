@@ -50,11 +50,13 @@ void Board::addEntity(Position pos, Entity entity){
 void Board::dropEntity(Position pos, Entity entity){
     //si je fais ça , c'est parce que le vector n'est pas une référence comme en java, si on l'assigne , une copie est créée
 
-    for (int i = 0; i < entities_.at(pos.getRow()).at(pos.getColumn()).size(); ++i) {
+    bool stop {false};
+    for (int i = 0; i < entities_.at(pos.getRow()).at(pos.getColumn()).size() && !stop; ++i) {
         if(entities_.at(pos.getRow()).at(pos.getColumn()).at(i).getNature() == entity.getNature()
                 && entities_.at(pos.getRow()).at(pos.getColumn()).at(i).getType() == entity.getType()){
             entities_.at(pos.getRow()).at(pos.getColumn()).erase(entities_.at(pos.getRow()).at(pos.getColumn()).begin() + i);
             --i;
+            stop = true;
         }
     }
 }
