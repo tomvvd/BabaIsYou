@@ -24,7 +24,12 @@ int main()
     //View::showBoard(board);
 
     Game game {};
-    game.constructLevel(1);
-    game.saveLevel();
+    View::showBoard(game.getBoard());
+    game.move(Direction::UP);
+    View::showBoard(game.getBoard());
+    game.move(Direction::UP);
+    View::showBoard(game.getBoard());
+    game.move(Direction::RIGHT);
+    View::showBoard(game.getBoard());
     int lol{1};
 }
