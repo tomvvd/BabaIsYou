@@ -209,9 +209,9 @@ void Game::isKill(){
                 Position pos{i,j};
                 vector<Entity> entities = board.getEntities(pos);
                 bool kill = false;
-                for (Entity entity : entities) {
-                    kill =entity.getType()==EntityType::ELEMENT
-                            && count(entitiesKill.begin(),entitiesKill.end(),entity.getNature());
+                for (int k = 0; k < entities.size() && !kill; ++k) {
+                    kill = entities[k].getType()==EntityType::ELEMENT
+                            && count(entitiesKill.begin(),entitiesKill.end(),entities[k].getNature());
                 }
                 if(kill){
                     for (Entity entity : entities) {
