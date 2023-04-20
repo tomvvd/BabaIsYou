@@ -45,10 +45,13 @@ void Controller::start(){
         else if(input=="reload"){
             game.reloadLevel();
         }
+        else if(input=="restart"){
+            game.restartLevel();
+        }
         else{
             cout << "This isn't a valid command, pleasy try again" << endl;
         }
-        if(game.isGameOver()){
+        if(game.isKill()){
             view.showLose();
             game.constructLevel(game.getCurrentLevel());
         }

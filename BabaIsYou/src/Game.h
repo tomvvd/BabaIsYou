@@ -16,21 +16,23 @@ private:
     inline string entityToString(Entity entity);
     inline void scanRule();
     inline void isSink();
+    inline void transformation();
 public:
     inline Game();
     inline void constructLevel(int num);
     inline void move(Direction dir);
-    inline bool isGameOver();
+    inline bool isKill();
     inline bool isLevelOver();
     inline void saveLevel();
     inline void reloadLevel();
+    inline void restartLevel();
     inline int getCurrentLevel() const;
     inline int getBoardHeight() const;
     inline int getBoardWidth() const;
     inline vector<Entity> getBoardEntities(Position pos);
 };
 
-Game::Game() : currentLevel{4}, board{LevelLoader::levelLoad(4)} {
+Game::Game() : currentLevel{3}, board{LevelLoader::levelLoad(3)} {
     scanRule();
 }
 
@@ -132,7 +134,28 @@ void Game::move(Direction dir){
             }
         }
         scanRule();
+        transformation();
         isSink();
+    }
+}
+
+void Game::transformation(){
+    vector<EntityNature> exceptEntities {EntityNature::IS,EntityNature::KILL,EntityNature::PUSH,EntityNature::STOP,EntityNature::YOU,EntityNature::SINK,EntityNature::WIN};
+    for (Rule rule : rules) {
+        if(count(exceptEntities.begin(),exceptEntities.end(),rule.getObject())==0){
+            for (int i = 0; i < board.getHeight(); ++i) {
+                for (int j = 0; j < board.getWidth(); ++j) {
+                    Position pos{i,j};
+                    vector<Entity> entities = board.getEntities(pos);
+                    for (Entity entity : entities) {
+                        if(entity.getType()==EntityType::ELEMENT && entity.getNature()==rule.getSubject()){
+                            board.dropEntity(pos,entity);
+                            board.addEntity(pos,Entity{rule.getObject(),EntityType::ELEMENT});
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -150,11 +173,15 @@ void Game::isSink(){
             for (int j = 1; j < board.getWidth()-1; ++j) {
                 Position pos{i,j};
                 vector<Entity> entities = board.getEntities(pos);
-                for (Entity entity : entities) {
-                    if(entity.getType()==EntityType::ELEMENT
-                            && count(entitiesSink.begin(),entitiesSink.end(),entity.getNature())
-                            && entities.size()>1){
-                        board.getEntities(pos).clear();
+                bool drown{false};
+                for (int k = 0; k < entities.size() && !drown; ++k) {
+                    drown = entities[k].getType()==EntityType::ELEMENT
+                            && count(entitiesSink.begin(),entitiesSink.end(),entities[k].getNature())
+                            && entities.size()>1;
+                }
+                if(drown){
+                    for (Entity entity : entities) {
+                        board.dropEntity(pos,entity);
                     }
                 }
             }
@@ -162,7 +189,7 @@ void Game::isSink(){
     }
 }
 
-bool Game::isGameOver(){
+bool Game::isKill(){
     bool res = false;
     vector<EntityNature> entitiesPlayer,entitiesKill;
     bool foundPlayers = false;
@@ -255,7 +282,7 @@ void Game::scanRule(){
                                 Position posDown{pos.next(Direction::DOWN)};
                                 vector<Entity> entitiesDown{board.getEntities(posDown)};
                                 for(Entity entityDown : entitiesDown){
-                                    if(entityDown.getType()==EntityType::TEXT){
+                                    if(entityDown.getType()==EntityType::TEXT && !(entityDown.getNature()==EntityNature::IS)){
                                         Rule rule {entityUp.getNature(),EntityNature::IS,entityDown.getNature()};
                                         rules.push_back(rule);
                                     }
@@ -272,7 +299,7 @@ void Game::scanRule(){
                                 Position posRight{pos.next(Direction::RIGHT)};
                                 vector<Entity> entitiesRight{board.getEntities(posRight)};
                                 for(Entity entityRight : entitiesRight){
-                                    if(entityRight.getType()==EntityType::TEXT){
+                                    if(entityRight.getType()==EntityType::TEXT && !(entityRight.getNature()==EntityNature::IS)){
                                         Rule rule {entityLeft.getNature(),EntityNature::IS,entityRight.getNature()};
                                         rules.push_back(rule);
                                     }
@@ -294,6 +321,11 @@ void Game::reloadLevel(){
     pair<Board,int> p = LevelLoader::reloadLevel();
     board = p.first;
     currentLevel = p.second;
+    scanRule();
+}
+
+void Game::restartLevel(){
+    constructLevel(currentLevel);
 }
 
 int Game::getCurrentLevel() const{

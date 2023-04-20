@@ -15,6 +15,7 @@ public:
     inline Entity(EntityNature nature, EntityType type);
     inline EntityNature getNature() const;
     inline EntityType getType() const;
+    inline void setNature(EntityNature e);
     inline string to_string() const;
 };
 
@@ -26,6 +27,10 @@ EntityNature Entity::getNature() const{
 
 EntityType Entity::getType() const{
     return this->type_;
+}
+
+void Entity::setNature(EntityNature e){
+    nature_ = e;
 }
 
 string Entity::to_string() const{

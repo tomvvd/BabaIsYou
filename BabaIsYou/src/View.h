@@ -61,6 +61,7 @@ void View::showInstructions(){
     cout << "To exit the game : exit" << endl;
     cout << "To save your level : save" << endl;
     cout << "To reload your level : reload" << endl;
+    cout << "To restart your level : restart" << endl;
     cout << "-------------------------------------------" << endl;
 }
 
