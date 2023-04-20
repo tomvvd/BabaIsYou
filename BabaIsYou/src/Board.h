@@ -36,6 +36,11 @@ int Board::getWidth() const{
     return width_;
 }
 
+/**
+ * @brief Board::getEntities
+ * @param pos
+ * @return
+ */
 vector<Entity> Board::getEntities(Position pos){
     return entities_.at(pos.getRow())
             .at(pos.getColumn());

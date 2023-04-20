@@ -55,6 +55,12 @@ class LevelLoader {
         else if (input == "text_water") {
             res = Entity{EntityNature::WATER,EntityType::TEXT};
         }
+        else if (input == "lava") {
+            res = Entity{EntityNature::LAVA,EntityType::ELEMENT};
+        }
+        else if (input == "text_lava") {
+            res = Entity{EntityNature::LAVA,EntityType::TEXT};
+        }
         else if (input == "is") {
             res = Entity{EntityNature::IS,EntityType::TEXT};
         }
@@ -105,6 +111,9 @@ class LevelLoader {
             else if (entityNature == EntityNature::WATER) {
                 res = "water";
             }
+            else if (entityNature == EntityNature::LAVA) {
+                res = "lava";
+            }
         }
         else {
             if (entityNature == EntityNature::BABA) {
@@ -127,6 +136,9 @@ class LevelLoader {
             }
             else if (entityNature == EntityNature::WATER) {
                 res = "text_water";
+            }
+            else if (entityNature == EntityNature::LAVA) {
+                res = "text_lava";
             }
             else if (entityNature == EntityNature::IS) {
                 res = "is";

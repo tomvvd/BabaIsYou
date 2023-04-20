@@ -14,7 +14,8 @@ public:
     inline void showTitle();
     inline void showInstructions();
     inline void askDirection();
-    inline void showCongratulation();
+    inline void showLose();
+    inline void showWin();
 };
 
 View::View(Game & game) : game{game} {}
@@ -67,10 +68,17 @@ void View::askDirection(){
     cout << "Where do you want to go ? " << endl;
 }
 
-void View::showCongratulation(){
+void View::showWin(){
     cout << endl;
     cout << "-------------------------------------------------" << endl;
     cout << "Congratulation ! You have completed the game !!!" << endl;
+    cout << "-------------------------------------------------" << endl;
+}
+
+void View::showLose(){
+    cout << endl;
+    cout << "-------------------------------------------------" << endl;
+    cout << "You have lost ! Try again !!!" << endl;
     cout << "-------------------------------------------------" << endl;
 }
 

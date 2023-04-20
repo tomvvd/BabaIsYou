@@ -55,6 +55,10 @@ string Entity::to_string() const{
         else if (nature_ == EntityNature::WATER) {
             res = "#";
         }
+        else if (nature_ == EntityNature::LAVA) {
+            res = "L";
+        }
+
     }
     else {
         if (nature_ == EntityNature::BABA) {
@@ -77,6 +81,9 @@ string Entity::to_string() const{
         }
         else if (nature_ == EntityNature::WATER) {
             res = "WATER";
+        }
+        else if (nature_ == EntityNature::LAVA) {
+            res = "LAVA";
         }
         else if (nature_ == EntityNature::IS) {
             res = "IS";

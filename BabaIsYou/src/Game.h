@@ -8,31 +8,36 @@
 #include <map>
 
 class Game{
-    private:
-        Board board;
-        vector<Rule> rules;
-        int currentLevel;
-
-        inline string entityToString(Entity entity);
-        inline void scanRule();
-    public:
-        inline Game();
-        inline void constructLevel(int num);
-        inline void move(Direction dir);
-        inline bool isGameOver();
-        inline bool isLevelOver();
-        inline void saveLevel();
-        inline void reloadLevel();
-        inline int getCurrentLevel() const;
-        inline int getBoardHeight() const;
-        inline int getBoardWidth() const;
-        inline vector<Entity> getBoardEntities(Position pos);
+private:
+    Board board;
+    vector<Rule> rules;
+    int currentLevel;
+    
+    inline string entityToString(Entity entity);
+    inline void scanRule();
+    inline void isSink();
+public:
+    inline Game();
+    inline void constructLevel(int num);
+    inline void move(Direction dir);
+    inline bool isGameOver();
+    inline bool isLevelOver();
+    inline void saveLevel();
+    inline void reloadLevel();
+    inline int getCurrentLevel() const;
+    inline int getBoardHeight() const;
+    inline int getBoardWidth() const;
+    inline vector<Entity> getBoardEntities(Position pos);
 };
 
-Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)} {
+Game::Game() : currentLevel{4}, board{LevelLoader::levelLoad(4)} {
     scanRule();
 }
 
+/**
+ * @brief Game::constructLevel
+ * @param num
+ */
 void Game::constructLevel(int num){
     currentLevel = num;
     this->board = LevelLoader::levelLoad(num);
@@ -126,8 +131,35 @@ void Game::move(Direction dir){
                 board.dropEntity(mp.second,mp.first);
             }
         }
+        scanRule();
+        isSink();
     }
-    scanRule();
+}
+
+void Game::isSink(){
+    vector<EntityNature> entitiesSink;
+    bool foundSink = false;
+    for(Rule rule : rules){
+        if(rule.getObject() == EntityNature::SINK){
+            entitiesSink.push_back(rule.getSubject());
+            foundSink = true;
+        }
+    }
+    if(foundSink){
+        for (int i = 1; i < board.getHeight()-1; ++i) {
+            for (int j = 1; j < board.getWidth()-1; ++j) {
+                Position pos{i,j};
+                vector<Entity> entities = board.getEntities(pos);
+                for (Entity entity : entities) {
+                    if(entity.getType()==EntityType::ELEMENT
+                            && count(entitiesSink.begin(),entitiesSink.end(),entity.getNature())
+                            && entities.size()>1){
+                        board.getEntities(pos).clear();
+                    }
+                }
+            }
+        }
+    }
 }
 
 bool Game::isGameOver(){
@@ -218,7 +250,7 @@ void Game::scanRule(){
                     vector<Entity> entitiesUp{board.getEntities(posUp)};
                     for (Entity entityUp : entitiesUp) {
                         if(entityUp.getType()==EntityType::TEXT){
-                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER};
+                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER,EntityNature::LAVA};
                             if(count(valide.begin(),valide.end(),entityUp.getNature())){
                                 Position posDown{pos.next(Direction::DOWN)};
                                 vector<Entity> entitiesDown{board.getEntities(posDown)};
@@ -235,7 +267,7 @@ void Game::scanRule(){
                     vector<Entity> entitiesLeft{board.getEntities(posLeft)};
                     for (Entity entityLeft : entitiesLeft) {
                         if(entityLeft.getType()==EntityType::TEXT){
-                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER};
+                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER,EntityNature::LAVA};
                             if(count(valide.begin(),valide.end(),entityLeft.getNature())){
                                 Position posRight{pos.next(Direction::RIGHT)};
                                 vector<Entity> entitiesRight{board.getEntities(posRight)};
