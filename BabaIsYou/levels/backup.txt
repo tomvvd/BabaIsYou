@@ -1,6 +1,6 @@
 0
 18 18
-baba 0 0
+baba 2 4
 text_wall 4 4
 is 5 4
 stop 6 4

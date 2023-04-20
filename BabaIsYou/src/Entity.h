@@ -58,25 +58,25 @@ string Entity::to_string() const{
     }
     else {
         if (nature_ == EntityNature::BABA) {
-            res = "tB";
+            res = "BABA";
         }
         else if (nature_ == EntityNature::FLAG) {
-            res = "tF";
+            res = "FLAG";
         }
         else if (nature_ == EntityNature::GRASS) {
-            res = "tG";
+            res = "GRASS";
         }
         else if (nature_ == EntityNature::METAL) {
-            res = "tM";
+            res = "METAL";
         }
         else if (nature_ == EntityNature::ROCK) {
-            res = "tR";
+            res = "ROCK";
         }
         else if (nature_ == EntityNature::WALL) {
-            res = "tW";
+            res = "WALL";
         }
         else if (nature_ == EntityNature::WATER) {
-            res = "t#";
+            res = "WATER";
         }
         else if (nature_ == EntityNature::IS) {
             res = "IS";

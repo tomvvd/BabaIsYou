@@ -48,6 +48,18 @@ void Controller::start(){
         else{
             cout << "This isn't a valid command, pleasy try again" << endl;
         }
+        if(game.isGameOver()){
+            game.constructLevel(game.getCurrentLevel());
+        }
+        if(game.isLevelOver()){
+            if(game.getCurrentLevel()+1!=5){
+                game.constructLevel(game.getCurrentLevel()+1);
+            }
+            else {
+                view.showCongratulation();
+                exit = true;
+            }
+        }
     }
 }
 

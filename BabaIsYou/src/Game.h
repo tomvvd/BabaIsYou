@@ -11,8 +11,6 @@ class Game{
     private:
         Board board;
         vector<Rule> rules;
-        bool levelOver;
-        bool gameOver;
         int currentLevel;
 
         inline string entityToString(Entity entity);
@@ -25,19 +23,18 @@ class Game{
         inline bool isLevelOver();
         inline void saveLevel();
         inline void reloadLevel();
-        inline bool isBlocking(Position pos);
+        inline int getCurrentLevel() const;
         inline int getBoardHeight() const;
         inline int getBoardWidth() const;
         inline vector<Entity> getBoardEntities(Position pos);
 };
 
-Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)}, levelOver{false}, gameOver{false} {
+Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)} {
     scanRule();
 }
 
 void Game::constructLevel(int num){
     currentLevel = num;
-    levelOver = false;
     this->board = LevelLoader::levelLoad(num);
     scanRule();
 }
@@ -74,10 +71,10 @@ void Game::move(Direction dir){
                                 vector<Entity> nextEntities = board.getEntities(next);
                                 if(!nextEntities.empty()){
                                     for (Entity nextEntity : nextEntities) {
-                                        if(count(entitiesStop.begin(),entitiesStop.end(),nextEntity.getNature())){
+                                        if(count(entitiesStop.begin(),entitiesStop.end(),nextEntity.getNature()) && !(nextEntity.getType()==EntityType::TEXT)){
                                             stop = true;
                                         }
-                                        else if(count(entitiesPush.begin(),entitiesPush.end(),nextEntity.getNature())==0){
+                                        else if(count(entitiesPush.begin(),entitiesPush.end(),nextEntity.getNature())==0 && !(nextEntity.getType()==EntityType::TEXT)){
                                             ok = true;
                                         }
                                         else{
@@ -101,7 +98,7 @@ void Game::move(Direction dir){
                                     }
                                     vector<Entity> lol = board.getEntities(pos2);
                                     for (Entity l : lol) {
-                                        if(count(entitiesPush.begin(),entitiesPush.end(),l.getNature())){
+                                        if(count(entitiesPush.begin(),entitiesPush.end(),l.getNature()) || l.getType()==EntityType::TEXT){
                                             board.addEntity(pos1,l);
                                             board.dropEntity(pos2,l);
                                         }
@@ -134,10 +131,77 @@ void Game::move(Direction dir){
 }
 
 bool Game::isGameOver(){
-    return this->gameOver;
+    bool res = false;
+    vector<EntityNature> entitiesPlayer,entitiesKill;
+    bool foundPlayers = false;
+    bool foundKill = false;
+    for(Rule rule : rules){
+        if(rule.getObject() == EntityNature::YOU){
+            entitiesPlayer.push_back(rule.getSubject());
+            foundPlayers = true;
+        }
+        else if(rule.getObject() == EntityNature::KILL){
+            entitiesKill.push_back(rule.getSubject());
+            foundKill = true;
+        }
+    }
+    if(foundPlayers && foundKill){
+        for (int i = 1; i < board.getHeight()-1 && !res; ++i) {
+            for (int j = 1; j < board.getWidth()-1 && !res; ++j) {
+                Position pos{i,j};
+                vector<Entity> entities = board.getEntities(pos);
+                bool ok1 = false;
+                bool ok2 = false;
+                for (Entity entity : entities) {
+                    if(entity.getType()==EntityType::ELEMENT && count(entitiesPlayer.begin(),entitiesPlayer.end(),entity.getNature())){
+                        ok1=true;
+                    }
+                    if(entity.getType()==EntityType::ELEMENT && count(entitiesKill.begin(),entitiesKill.end(),entity.getNature())){
+                        ok2=true;
+                    }
+                }
+                res = ok1 && ok2;
+            }
+        }
+    }
+    return res;
 }
+
 bool Game::isLevelOver(){
-    return this->levelOver;
+    bool res = false;
+    vector<EntityNature> entitiesPlayer,entitiesWin;
+    bool foundPlayers = false;
+    bool foundWin = false;
+    for(Rule rule : rules){
+        if(rule.getObject() == EntityNature::YOU){
+            entitiesPlayer.push_back(rule.getSubject());
+            foundPlayers = true;
+        }
+        else if(rule.getObject() == EntityNature::WIN){
+            entitiesWin.push_back(rule.getSubject());
+            foundWin = true;
+        }
+    }
+    if(foundPlayers && foundWin){
+        for (int i = 1; i < board.getHeight()-1 && !res; ++i) {
+            for (int j = 1; j < board.getWidth()-1 && !res; ++j) {
+                Position pos{i,j};
+                vector<Entity> entities = board.getEntities(pos);
+                bool ok1 = false;
+                bool ok2 = false;
+                for (Entity entity : entities) {
+                    if(entity.getType()==EntityType::ELEMENT && count(entitiesPlayer.begin(),entitiesPlayer.end(),entity.getNature())){
+                        ok1=true;
+                    }
+                    if(entity.getType()==EntityType::ELEMENT && count(entitiesWin.begin(),entitiesWin.end(),entity.getNature())){
+                        ok2=true;
+                    }
+                }
+                res = ok1 && ok2;
+            }
+        }
+    }
+    return res;
 }
 
 void Game::scanRule(){
@@ -198,6 +262,10 @@ void Game::reloadLevel(){
     pair<Board,int> p = LevelLoader::reloadLevel();
     board = p.first;
     currentLevel = p.second;
+}
+
+int Game::getCurrentLevel() const{
+    return currentLevel;
 }
 
 int Game::getBoardHeight() const{
