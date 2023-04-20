@@ -69,7 +69,7 @@
 				},
 				{
 					"backtrace" : 5,
-					"fragment" : "-ffile-prefix-map=C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src/="
+					"fragment" : "-ffile-prefix-map=C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/="
 				},
 				{
 					"fragment" : "-std=gnu++20"
@@ -79,11 +79,11 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.."
+					"path" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.."
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes"
+					"path" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes"
 				}
 			],
 			"language" : "CXX",

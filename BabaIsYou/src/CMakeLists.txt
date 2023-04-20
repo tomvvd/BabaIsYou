@@ -5,8 +5,6 @@ add_executable(BabaIsYou
     main.cpp
     Direction.h
     Position.h
-    MyClass.cpp
-    MyClass.h
     EntityType.h
     EntityNature.h
     Entity.h

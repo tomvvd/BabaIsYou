@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou"
 		},
 		{
 			"name" : "BabaIsYou_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou"
 		},
 		{
 			"name" : "CATCH_CONFIG_ANDROID_LOGWRITE",
@@ -703,7 +703,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou"
+			"value" : "c:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -1091,7 +1091,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -1163,7 +1163,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou"
 		},
 		{
 			"name" : "CMAKE_INSTALL_BINDIR",
@@ -1654,18 +1654,6 @@
 			"value" : ""
 		},
 		{
-			"name" : "CMAKE_PROJECT_INCLUDE_BEFORE",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "C:/Qt/Tools/QtCreator/share/qtcreator/package-manager/auto-setup.cmake"
-		},
-		{
 			"name" : "CMAKE_PROJECT_NAME",
 			"properties" : 
 			[
@@ -2147,7 +2135,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-build"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build"
 		},
 		{
 			"name" : "Catch2_GUID_CMAKE",
@@ -2183,7 +2171,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps/catch2-src"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src"
 		},
 		{
 			"name" : "FETCHCONTENT_BASE_DIR",
@@ -2195,7 +2183,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/thoma/Documents/HE2B_ESI/projet_dev4/BabaIsYou/_deps"
+			"value" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps"
 		},
 		{
 			"name" : "FETCHCONTENT_FULLY_DISCONNECTED",
@@ -2274,28 +2262,16 @@
 			"value" : "C:/Program Files/Git/cmd/git.exe"
 		},
 		{
-			"name" : "HAVE_FLAG__ffile_prefix_map_C__Users_thoma_Documents_HE2B_ESI_projet_dev4_BabaIsYou__deps_catch2_src__",
+			"name" : "HAVE_FLAG__ffile_prefix_map_C__Users_thoma_Documents_QtCreatorProjects_dev4_projet_dev4_BabaIsYou__deps_catch2_src__",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Test HAVE_FLAG__ffile_prefix_map_C__Users_thoma_Documents_HE2B_ESI_projet_dev4_BabaIsYou__deps_catch2_src__"
+					"value" : "Test HAVE_FLAG__ffile_prefix_map_C__Users_thoma_Documents_QtCreatorProjects_dev4_projet_dev4_BabaIsYou__deps_catch2_src__"
 				}
 			],
 			"type" : "INTERNAL",
 			"value" : "1"
-		},
-		{
-			"name" : "QT_CREATOR_SKIP_PACKAGE_MANAGER_SETUP",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Skip Qt Creator's package manager auto-setup"
-				}
-			],
-			"type" : "BOOL",
-			"value" : "OFF"
 		},
 		{
 			"name" : "QT_QMAKE_EXECUTABLE",

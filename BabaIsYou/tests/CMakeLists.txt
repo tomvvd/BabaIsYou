@@ -2,8 +2,13 @@ cmake_minimum_required(VERSION 3.5)
 
 add_executable(BabaIsYouTests
 
-    testMyClass.cpp
-    ../src/MyClass.cpp
+    testPosition.cpp
+    ../src/Position.h
+    testLevelLoader.cpp
+    ../src/LevelLoader.h
+    testGame.cpp
+    ../src/Game.h
+
 )
 target_include_directories(BabaIsYouTests PRIVATE
     ../src
