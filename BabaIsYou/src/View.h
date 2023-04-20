@@ -76,12 +76,4 @@ void View::showWin(){
     cout << "-------------------------------------------------" << endl;
 }
 
-void View::showLose(){
-    cout << endl;
-    cout << "-------------------------------------------------" << endl;
-    cout << "You have lost ! Try again !!!" << endl;
-    cout << "-------------------------------------------------" << endl;
-}
-
-
 #endif // VIEW_H

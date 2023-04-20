@@ -12,16 +12,15 @@ private:
     Board board;
     vector<Rule> rules;
     int currentLevel;
-    
-    inline string entityToString(Entity entity);
+
     inline void scanRule();
     inline void isSink();
     inline void transformation();
+    inline void isKill();
 public:
     inline Game();
     inline void constructLevel(int num);
     inline void move(Direction dir);
-    inline bool isKill();
     inline bool isLevelOver();
     inline void saveLevel();
     inline void reloadLevel();
@@ -32,7 +31,7 @@ public:
     inline vector<Entity> getBoardEntities(Position pos);
 };
 
-Game::Game() : currentLevel{3}, board{LevelLoader::levelLoad(3)} {
+Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0)} {
     scanRule();
 }
 
@@ -136,6 +135,7 @@ void Game::move(Direction dir){
         scanRule();
         transformation();
         isSink();
+        isKill();
     }
 }
 
@@ -189,8 +189,7 @@ void Game::isSink(){
     }
 }
 
-bool Game::isKill(){
-    bool res = false;
+void Game::isKill(){
     vector<EntityNature> entitiesPlayer,entitiesKill;
     bool foundPlayers = false;
     bool foundKill = false;
@@ -205,25 +204,26 @@ bool Game::isKill(){
         }
     }
     if(foundPlayers && foundKill){
-        for (int i = 1; i < board.getHeight()-1 && !res; ++i) {
-            for (int j = 1; j < board.getWidth()-1 && !res; ++j) {
+        for (int i = 1; i < board.getHeight()-1; ++i) {
+            for (int j = 1; j < board.getWidth()-1; ++j) {
                 Position pos{i,j};
                 vector<Entity> entities = board.getEntities(pos);
-                bool ok1 = false;
-                bool ok2 = false;
+                bool kill = false;
                 for (Entity entity : entities) {
-                    if(entity.getType()==EntityType::ELEMENT && count(entitiesPlayer.begin(),entitiesPlayer.end(),entity.getNature())){
-                        ok1=true;
-                    }
-                    if(entity.getType()==EntityType::ELEMENT && count(entitiesKill.begin(),entitiesKill.end(),entity.getNature())){
-                        ok2=true;
+                    kill =entity.getType()==EntityType::ELEMENT
+                            && count(entitiesKill.begin(),entitiesKill.end(),entity.getNature());
+                }
+                if(kill){
+                    for (Entity entity : entities) {
+                        if(entity.getType()==EntityType::ELEMENT
+                                && count(entitiesPlayer.begin(),entitiesPlayer.end(),entity.getNature())){
+                            board.dropEntity(pos,entity);
+                        }
                     }
                 }
-                res = ok1 && ok2;
             }
         }
     }
-    return res;
 }
 
 bool Game::isLevelOver(){
