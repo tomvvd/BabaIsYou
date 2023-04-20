@@ -191,114 +191,13 @@ void Game::scanRule(){
 }
 
 void Game::saveLevel(){
-    vector<string> res;
-    res.push_back(to_string(currentLevel));
-    int height = board.getHeight();
-    int width = board.getWidth();
-    stringstream ss;
-    ss << to_string(width) << " " << to_string(height);
-    res.push_back(ss.str());
-    for (int i = 1; i < height-1; ++i) {
-        for (int j = 1; j < width-1; ++j) {
-            Position pos{i,j};
-            vector<Entity> entities = board.getEntities(pos);
-            for (int k = 0; k < entities.size(); ++k) {
-                stringstream ss2;
-                ss2 << entityToString(entities[k]) << " " << to_string(j) << " " << to_string(i);
-                res.push_back(ss2.str());
-            }
-        }
-    }
-    ofstream myFile("../levels/backup.txt", ios::out | ios::trunc);
-
-    if (myFile.is_open()) {
-        for (const auto& str : res) {
-            myFile.write(str.c_str(), str.length());
-            myFile.write("\n", 1);
-        }
-        myFile.close();
-    }
-    else {
-        cout << "Unable to open file";
-    }
-}
-
-string Game::entityToString(Entity entity){
-    EntityType entityType = entity.getType();
-    EntityNature entityNature = entity.getNature();
-    string res;
-    if(entityType==EntityType::ELEMENT){
-        if (entityNature == EntityNature::BABA) {
-            res = "baba";
-        }
-        else if (entityNature == EntityNature::FLAG) {
-            res = "flag";
-        }
-        else if (entityNature == EntityNature::GRASS) {
-            res = "grass";
-        }
-        else if (entityNature == EntityNature::METAL) {
-            res = "metal";
-        }
-        else if (entityNature == EntityNature::ROCK) {
-            res = "rock";
-        }
-        else if (entityNature == EntityNature::WALL) {
-            res = "wall";
-        }
-        else if (entityNature == EntityNature::WATER) {
-            res = "water";
-        }
-    }
-    else {
-        if (entityNature == EntityNature::BABA) {
-            res = "text_baba";
-        }
-        else if (entityNature == EntityNature::FLAG) {
-            res = "text_flag";
-        }
-        else if (entityNature == EntityNature::GRASS) {
-            res = "text_grass";
-        }
-        else if (entityNature == EntityNature::METAL) {
-            res = "text_metal";
-        }
-        else if (entityNature == EntityNature::ROCK) {
-            res = "text_rock";
-        }
-        else if (entityNature == EntityNature::WALL) {
-            res = "text_wall";
-        }
-        else if (entityNature == EntityNature::WATER) {
-            res = "text_water";
-        }
-        else if (entityNature == EntityNature::IS) {
-            res = "is";
-        }
-        else if (entityNature == EntityNature::KILL) {
-            res = "kill";
-        }
-        else if (entityNature == EntityNature::PUSH) {
-            res = "push";
-        }
-        else if (entityNature == EntityNature::SINK) {
-            res = "sink";
-        }
-        else if (entityNature == EntityNature::STOP) {
-            res = "stop";
-        }
-        else if (entityNature == EntityNature::YOU) {
-            res = "you";
-        }
-        else if (entityNature == EntityNature::WIN) {
-            res = "win";
-        }
-    }
-    return res;
+    LevelLoader::saveLevel(board,currentLevel);
 }
 
 void Game::reloadLevel(){
-    //to do
+    pair<Board,int> p = LevelLoader::reloadLevel();
+    board = p.first;
+    currentLevel = p.second;
 }
 
 int Game::getBoardHeight() const{

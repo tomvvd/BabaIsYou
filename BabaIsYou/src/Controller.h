@@ -41,7 +41,11 @@ void Controller::start(){
         }
         else if(input=="save"){
             game.saveLevel();
-        }else{
+        }
+        else if(input=="reload"){
+            game.reloadLevel();
+        }
+        else{
             cout << "This isn't a valid command, pleasy try again" << endl;
         }
     }
