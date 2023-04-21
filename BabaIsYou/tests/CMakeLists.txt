@@ -3,12 +3,30 @@ cmake_minimum_required(VERSION 3.5)
 add_executable(BabaIsYouTests
 
     testPosition.cpp
-    ../src/Position.h
-    testLevelLoader.cpp
-    ../src/LevelLoader.h
     testGame.cpp
+    testLevelLoader.cpp
+    ../src/Position.h
+    ../src/EntityNature.h
+    ../src/EntityType.h
+    ../src/Observer.h
+    ../src/Observable.h
+    ../src/Observer.cpp
+    ../src/Observable.cpp
+    ../src/Rule.h
+    ../src/Rule.cpp
+    ../src/View.h
+    ../src/View.cpp
+    ../src/Controller.h
+    ../src/Controller.cpp
+    ../src/Position.cpp
+    ../src/LevelLoader.h
     ../src/Game.h
-
+    ../src/Game.cpp
+    ../src/Board.h
+    ../src/Board.cpp
+    ../src/Entity.h
+    ../src/Entity.cpp
+    ../src/Direction.h
 )
 target_include_directories(BabaIsYouTests PRIVATE
     ../src

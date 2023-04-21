@@ -36,5 +36,5 @@ TEST_CASE( "Test of LevelLoader") {
         }
         REQUIRE(res);
     }
-    //le même test peut être appliqué à tous les éléments du board
+    //the same test can be applied to all elements of the board
 }

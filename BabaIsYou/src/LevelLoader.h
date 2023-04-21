@@ -168,6 +168,7 @@ class LevelLoader {
 public:
     static Board levelLoad(int nb) {
         stringstream ss;
+        //depending on where the build directory is located, you will have to change this relative path
         ss << "../levels/level_" << nb << ".txt";
         string filename = ss.str();
         ifstream file(filename);
@@ -244,6 +245,7 @@ public:
                 }
             }
         }
+        //depending on where the build directory is located, you will have to change this relative path
         ofstream myFile("../levels/backup.txt", ios::out | ios::trunc);
 
         if (myFile.is_open()) {
@@ -259,6 +261,7 @@ public:
     }
 
     static pair<Board,int> reloadLevel(){
+        //depending on where the build directory is located, you will have to change this relative path
         string filename{"../levels/backup.txt"};
         ifstream file(filename);
         vector<string> lines;

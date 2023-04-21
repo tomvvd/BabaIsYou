@@ -1,5 +1,4 @@
 #include "EntityNature.h"
-#include "Position.h"
 #include <vector>
 #include <string>
 #include <sstream>
@@ -15,24 +14,11 @@ class Rule{
         EntityNature operation;
         EntityNature object;
     public:
-        inline Rule(EntityNature subject, EntityNature operation, EntityNature object);
-        inline EntityNature getSubject();
-        inline EntityNature getOperation();
-        inline EntityNature getObject();
-        inline string to_string();
+        Rule(EntityNature subject, EntityNature operation, EntityNature object);
+        EntityNature getSubject();
+        EntityNature getOperation();
+        EntityNature getObject();
 };
-
-Rule::Rule(EntityNature subj, EntityNature oper, EntityNature obj):subject {subj}, operation{oper}, object {obj}{}
-
-EntityNature Rule::getSubject(){
-    return this->subject;
-}
-EntityNature Rule::getOperation(){
-    return this->operation;
-}
-EntityNature Rule::getObject(){
-    return this->object;
-}
 
 
 

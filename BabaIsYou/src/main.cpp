@@ -9,6 +9,7 @@ int main()
 {
     Game game {};
     View view{game};
+    game.registerObserver(&view);
     Controller controller{game,view};
     controller.start();
 }

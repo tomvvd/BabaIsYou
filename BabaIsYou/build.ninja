@@ -126,6 +126,60 @@ build src/CMakeFiles/BabaIsYou.dir/main.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C
   OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
   OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
 
+build src/CMakeFiles/BabaIsYou.dir/Position.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Position.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Position.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Entity.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Entity.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Entity.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Board.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Board.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Board.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Rule.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Rule.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Rule.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Game.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Game.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Game.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Controller.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Controller.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Controller.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/View.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/View.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\View.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Observable.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Observable.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Observable.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
+build src/CMakeFiles/BabaIsYou.dir/Observer.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Observer.cpp || cmake_object_order_depends_target_BabaIsYou
+  DEP_FILE = src\CMakeFiles\BabaIsYou.dir\Observer.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\BabaIsYou.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target BabaIsYou
@@ -134,7 +188,7 @@ build src/CMakeFiles/BabaIsYou.dir/main.cpp.obj: CXX_COMPILER__BabaIsYou_Debug C
 #############################################
 # Link the executable src\BabaIsYou.exe
 
-build src/BabaIsYou.exe: CXX_EXECUTABLE_LINKER__BabaIsYou_Debug src/CMakeFiles/BabaIsYou.dir/main.cpp.obj
+build src/BabaIsYou.exe: CXX_EXECUTABLE_LINKER__BabaIsYou_Debug src/CMakeFiles/BabaIsYou.dir/main.cpp.obj src/CMakeFiles/BabaIsYou.dir/Position.cpp.obj src/CMakeFiles/BabaIsYou.dir/Entity.cpp.obj src/CMakeFiles/BabaIsYou.dir/Board.cpp.obj src/CMakeFiles/BabaIsYou.dir/Rule.cpp.obj src/CMakeFiles/BabaIsYou.dir/Game.cpp.obj src/CMakeFiles/BabaIsYou.dir/Controller.cpp.obj src/CMakeFiles/BabaIsYou.dir/View.cpp.obj src/CMakeFiles/BabaIsYou.dir/Observable.cpp.obj src/CMakeFiles/BabaIsYou.dir/Observer.cpp.obj
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = src\CMakeFiles\BabaIsYou.dir
@@ -231,6 +285,13 @@ build tests/CMakeFiles/BabaIsYouTests.dir/testPosition.cpp.obj: CXX_COMPILER__Ba
   OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
   OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir
 
+build tests/CMakeFiles/BabaIsYouTests.dir/testGame.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/testGame.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\testGame.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+
 build tests/CMakeFiles/BabaIsYouTests.dir/testLevelLoader.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/testLevelLoader.cpp || cmake_object_order_depends_target_BabaIsYouTests
   DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\testLevelLoader.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
@@ -238,12 +299,68 @@ build tests/CMakeFiles/BabaIsYouTests.dir/testLevelLoader.cpp.obj: CXX_COMPILER_
   OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
   OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir
 
-build tests/CMakeFiles/BabaIsYouTests.dir/testGame.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/testGame.cpp || cmake_object_order_depends_target_BabaIsYouTests
-  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\testGame.cpp.obj.d
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Observer.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Observer.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Observer.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
   INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
   OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
-  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Observable.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Observable.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Observable.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Rule.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Rule.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Rule.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/View.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/View.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\View.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Controller.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Controller.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Controller.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Position.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Position.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Position.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Game.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Game.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Game.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Board.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Board.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Board.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
+
+build tests/CMakeFiles/BabaIsYouTests.dir/__/src/Entity.cpp.obj: CXX_COMPILER__BabaIsYouTests_Debug C$:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/src/Entity.cpp || cmake_object_order_depends_target_BabaIsYouTests
+  DEP_FILE = tests\CMakeFiles\BabaIsYouTests.dir\__\src\Entity.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++20
+  INCLUDES = -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/tests/../src -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-src/src/catch2/.. -IC:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/BabaIsYou/_deps/catch2-build/generated-includes
+  OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir
+  OBJECT_FILE_DIR = tests\CMakeFiles\BabaIsYouTests.dir\__\src
 
 
 # =============================================================================
@@ -253,7 +370,7 @@ build tests/CMakeFiles/BabaIsYouTests.dir/testGame.cpp.obj: CXX_COMPILER__BabaIs
 #############################################
 # Link the executable tests\BabaIsYouTests.exe
 
-build tests/BabaIsYouTests.exe: CXX_EXECUTABLE_LINKER__BabaIsYouTests_Debug tests/CMakeFiles/BabaIsYouTests.dir/testPosition.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/testLevelLoader.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/testGame.cpp.obj | _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a || _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a
+build tests/BabaIsYouTests.exe: CXX_EXECUTABLE_LINKER__BabaIsYouTests_Debug tests/CMakeFiles/BabaIsYouTests.dir/testPosition.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/testGame.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/testLevelLoader.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Observer.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Observable.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Rule.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/View.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Controller.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Position.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Game.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Board.cpp.obj tests/CMakeFiles/BabaIsYouTests.dir/__/src/Entity.cpp.obj | _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a || _deps/catch2-build/src/libCatch2Maind.a _deps/catch2-build/src/libCatch2d.a
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = _deps/catch2-build/src/libCatch2Maind.a  _deps/catch2-build/src/libCatch2d.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = tests\CMakeFiles\BabaIsYouTests.dir

@@ -3,7 +3,7 @@
 
 TEST_CASE( "Test of Game") {
     Game game;
-    //Position du joueur Baba
+    //Position of player Baba
     Position posPlayer{9,6};
 
     SECTION("Test Method simple move(...) : DOWN direction good"){
@@ -14,7 +14,7 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le joueur n'est plus présent à son ancienne position
+        //check if the player isn't anymore on his old position
         vector<Entity> entities2 = game.getBoardEntities(posPlayer);
         bool res2{false};
         for (int i = 0; i < entities2.size() && !res2; ++i) {
@@ -31,7 +31,7 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le joueur n'est plus présent à son ancienne position
+        //check if the player isn't anymore on his old position
         vector<Entity> entities2 = game.getBoardEntities(posPlayer);
         bool res2{false};
         for (int i = 0; i < entities2.size() && !res2; ++i) {
@@ -48,7 +48,7 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le joueur n'est plus présent à son ancienne position
+        //check if the player isn't anymore on his old position
         vector<Entity> entities2 = game.getBoardEntities(posPlayer);
         bool res2{false};
         for (int i = 0; i < entities2.size() && !res2; ++i) {
@@ -65,7 +65,7 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le joueur n'est plus présent à son ancienne position
+        //check if the player isn't anymore on his old position
         vector<Entity> entities2 = game.getBoardEntities(posPlayer);
         bool res2{false};
         for (int i = 0; i < entities2.size() && !res2; ++i) {
@@ -83,7 +83,7 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le joueur a été bloqué par un mur (WALL IS STOP)
+        //check if the player has been blocked by a wall (WALL IS STOP)
         Position pos2{11,6};
         vector<Entity> entities2 = game.getBoardEntities(pos2);
         bool res2{false};
@@ -103,14 +103,14 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le rocher n'est plus là (ROCK IS PUSH)
+        //check if the rock isn't anymore on his old position
         Position pos2{9,9};
         vector<Entity> entities2 = game.getBoardEntities(pos2);
         bool res2{false};
         for (int i = 0; i < entities2.size() && !res2; ++i) {
             res2 = entities2[i].getType()==EntityType::ELEMENT && entities2[i].getNature() == EntityNature::ROCK;
         }
-        //vérifie que le rocher a bien été poussé
+        //check if the rock has been pushed
         Position pos3{9,10};
         vector<Entity> entities3 = game.getBoardEntities(pos3);
         bool res3{false};
@@ -137,21 +137,21 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le texte WALL a été poussé
+        //check if the WALL text has been pushed
         Position pos2{5,6};
         vector<Entity> entities2 = game.getBoardEntities(pos2);
         bool res2{false};
         for (int i = 0; i < entities2.size() && !res2; ++i) {
             res2 = entities2[i].getType()==EntityType::TEXT && entities2[i].getNature() == EntityNature::WALL;
         }
-        //vérifie que le texte IS a été poussé
+        //check if the IS text has been pushed
         Position pos3{5,7};
         vector<Entity> entities3 = game.getBoardEntities(pos3);
         bool res3{false};
         for (int i = 0; i < entities3.size() && !res3; ++i) {
             res3 = entities3[i].getType()==EntityType::TEXT && entities3[i].getNature() == EntityNature::IS;
         }
-        //vérifie que le texte STOP a été poussé
+        //check if the STOP text has been pushed
         Position pos4{5,8};
         vector<Entity> entities4 = game.getBoardEntities(pos4);
         bool res4{false};
@@ -175,7 +175,7 @@ TEST_CASE( "Test of Game") {
         game.move(Direction::DOWN);
         REQUIRE(game.isLevelOver());
     }
-    SECTION("Test Method move(...) : break the rule"){
+    SECTION("Test Method move(...) : break the rule WALL IS STOP"){
         game.move(Direction::LEFT);
         game.move(Direction::LEFT);
         game.move(Direction::LEFT);
@@ -193,7 +193,7 @@ TEST_CASE( "Test of Game") {
         for (int i = 0; i < entities.size() && !res; ++i) {
             res = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::BABA;
         }
-        //vérifie que le joueur a traversé un mur (WALL IS STOP)
+        //check if the player went through a wall
         bool res2{false};
         for (int i = 0; i < entities.size() && !res2; ++i) {
             res2 = entities[i].getType()==EntityType::ELEMENT && entities[i].getNature() == EntityNature::WALL;
@@ -233,7 +233,7 @@ TEST_CASE( "Test of Game") {
         //flag is you
         game.move(Direction::RIGHT);
 
-        //vérifie que le drapeau a bougé
+        //check if the flag has been moved
         Position pos{9,14};
         vector<Entity> entities = game.getBoardEntities(pos);
         bool res{false};
@@ -267,7 +267,7 @@ TEST_CASE( "Test of Game") {
         game.move(Direction::LEFT);
         game.move(Direction::LEFT);
         game.move(Direction::LEFT);
-        //les murs sont devenus des rochers
+        //the walls transform into rocks
 
         Position pos{7,6};
         vector<Entity> entities = game.getBoardEntities(pos);
@@ -281,7 +281,7 @@ TEST_CASE( "Test of Game") {
         game.constructLevel(3);
         game.move(Direction::DOWN);
         game.move(Direction::DOWN);
-        //vérifie que la case est vide
+        //check if the box is empty
         Position pos{9,8};
         vector<Entity> entities = game.getBoardEntities(pos);
 
@@ -296,7 +296,7 @@ TEST_CASE( "Test of Game") {
         game.move(Direction::RIGHT);
         game.move(Direction::RIGHT);
         game.move(Direction::RIGHT);
-        //vérifie que la case est vide
+        //check if the player isn't anymore there.
         Position pos{8,11};
         vector<Entity> entities = game.getBoardEntities(pos);
         bool res{false};
