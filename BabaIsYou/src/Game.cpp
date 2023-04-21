@@ -13,24 +13,30 @@ void Game::constructLevel(int num){
     currentLevel = num;
     this->board = LevelLoader::levelLoad(num);
     scanRule();
+    notifyObservers();
 }
 
 void Game::move(Direction dir){
     vector<EntityNature> entitiesPlayer,entitiesPush, entitiesStop;
     bool hasBeenFound = false;
+    //going through each rule
     for(Rule rule : rules){
         if(rule.getObject() == EntityNature::YOU){
+            //get all the entities that represents the actual player
             entitiesPlayer.push_back(rule.getSubject());
             hasBeenFound = true;
         }
         else if(rule.getObject() == EntityNature::STOP){
+            //get all the entities that stops all the entities
             entitiesStop.push_back(rule.getSubject());
         }
         else if(rule.getObject() == EntityNature::PUSH){
+            //get all the entities that are pushable
             entitiesPush.push_back(rule.getSubject());
         }
     }
     if(hasBeenFound){
+        //go through the whole board to find an element playable
         vector<pair<Entity,Position>> movePlayers;
         for (int i = 1; i < board.getHeight()-1; ++i) {
             for (int j = 1; j < board.getWidth()-1; ++j) {
@@ -39,8 +45,11 @@ void Game::move(Direction dir){
                 for (EntityNature player:entitiesPlayer) {
                     for (Entity entity : entities) {
                         if(entity.getType()==EntityType::ELEMENT && entity.getNature()==player){
+                            //stop the move
                             bool stop = false;
+                            //valid the move
                             bool ok = false;
+                            //index of the free square if there are elements to push
                             int cpt = 1;
                             Position next{pos.next(dir)};
                             while(!stop && !ok){
@@ -62,6 +71,7 @@ void Game::move(Direction dir){
                                     ok = true;
                                 }
                             }
+                            //if you are not blocked
                             if(!stop){
                                 while (cpt>1) {
                                     Position pos1 = pos;
@@ -81,6 +91,7 @@ void Game::move(Direction dir){
                                     }
                                     cpt--;
                                 }
+                                //move the player later
                                 movePlayers.push_back(make_pair(entity,pos));
                             }
                         }
@@ -88,6 +99,7 @@ void Game::move(Direction dir){
                 }
             }
         }
+        //move the player
         if(dir==Direction::LEFT || dir==Direction::UP){
             for (int i = 0; i < movePlayers.size(); ++i) {
                 pair<Entity,Position> mp = movePlayers[i];
@@ -102,6 +114,7 @@ void Game::move(Direction dir){
                 board.dropEntity(mp.second,mp.first);
             }
         }
+        //verify the rules (create, or delete)
         scanRule();
         transformation();
         isSink();
@@ -111,7 +124,9 @@ void Game::move(Direction dir){
 }
 
 void Game::transformation(){
+    //the entities that aren't eligble to be transformed
     vector<EntityNature> exceptEntities {EntityNature::IS,EntityNature::KILL,EntityNature::PUSH,EntityNature::STOP,EntityNature::YOU,EntityNature::SINK,EntityNature::WIN};
+    //going through each active rule
     for (Rule rule : rules) {
         if(count(exceptEntities.begin(),exceptEntities.end(),rule.getObject())==0){
             for (int i = 0; i < board.getHeight(); ++i) {
@@ -120,6 +135,7 @@ void Game::transformation(){
                     vector<Entity> entities = board.getEntities(pos);
                     for (Entity entity : entities) {
                         if(entity.getType()==EntityType::ELEMENT && entity.getNature()==rule.getSubject()){
+                            //replace each transformed element to his new nature
                             board.dropEntity(pos,entity);
                             board.addEntity(pos,Entity{rule.getObject(),EntityType::ELEMENT});
                         }
@@ -152,6 +168,8 @@ void Game::isSink(){
                 }
                 if(drown){
                     for (Entity entity : entities) {
+                        //when an element comes in contact with a element with the active sink rule
+                        //the elements disappear
                         board.dropEntity(pos,entity);
                     }
                 }
@@ -164,6 +182,7 @@ void Game::isKill(){
     vector<EntityNature> entitiesPlayer,entitiesKill;
     bool foundPlayers = false;
     bool foundKill = false;
+    //check if there is an active rule about killing
     for(Rule rule : rules){
         if(rule.getObject() == EntityNature::YOU){
             entitiesPlayer.push_back(rule.getSubject());
@@ -174,12 +193,14 @@ void Game::isKill(){
             foundKill = true;
         }
     }
+    //if there is an active rule about killing and that there is also playable elements
+    //go through the whole board
     if(foundPlayers && foundKill){
         for (int i = 1; i < board.getHeight()-1; ++i) {
             for (int j = 1; j < board.getWidth()-1; ++j) {
                 Position pos{i,j};
                 vector<Entity> entities = board.getEntities(pos);
-                bool kill = false;
+                bool kill = false;                
                 for (int k = 0; k < entities.size() && !kill; ++k) {
                     kill = entities[k].getType()==EntityType::ELEMENT
                             && count(entitiesKill.begin(),entitiesKill.end(),entities[k].getNature());
@@ -202,6 +223,7 @@ bool Game::isLevelOver(){
     vector<EntityNature> entitiesPlayer,entitiesWin;
     bool foundPlayers = false;
     bool foundWin = false;
+    //check if there is an active rule about winning
     for(Rule rule : rules){
         if(rule.getObject() == EntityNature::YOU){
             entitiesPlayer.push_back(rule.getSubject());
@@ -212,6 +234,8 @@ bool Game::isLevelOver(){
             foundWin = true;
         }
     }
+    //if there is an active rule about winning and that there is also playable elements
+    //go through the whole board
     if(foundPlayers && foundWin){
         for (int i = 1; i < board.getHeight()-1 && !res; ++i) {
             for (int j = 1; j < board.getWidth()-1 && !res; ++j) {
@@ -219,10 +243,15 @@ bool Game::isLevelOver(){
                 vector<Entity> entities = board.getEntities(pos);
                 bool ok1 = false;
                 bool ok2 = false;
+                //check each element on each box of the board
                 for (Entity entity : entities) {
+                    //if he finds that the nature of the element is equal to the element nature eligble
+                    //for the win boolean goes true
                     if(entity.getType()==EntityType::ELEMENT && count(entitiesPlayer.begin(),entitiesPlayer.end(),entity.getNature())){
                         ok1=true;
                     }
+                    //if he finds that the playable element is on the nature of the element causing the
+                    //win, then the boolean goes true
                     if(entity.getType()==EntityType::ELEMENT && count(entitiesWin.begin(),entitiesWin.end(),entity.getNature())){
                         ok2=true;
                     }
@@ -238,12 +267,14 @@ void Game::scanRule(){
     rules.clear();
     Rule limitRule{EntityNature::LIMIT,EntityNature::IS,EntityNature::STOP};
     rules.push_back(limitRule);
+    //check if there is a IS
     for (int i = 1; i < board.getHeight()-1; ++i) {
         for (int j = 1; j < board.getWidth()-1; ++j) {
             Position pos{i,j};
             vector<Entity> entities{board.getEntities(pos)};
             for (int k = 0; k < entities.size(); ++k) {
                 if(entities[k].getNature()==EntityNature::IS){
+                    //verify rule vertically
                     Position posUp{pos.next(Direction::UP)};
                     vector<Entity> entitiesUp{board.getEntities(posUp)};
                     for (Entity entityUp : entitiesUp) {
@@ -261,6 +292,7 @@ void Game::scanRule(){
                             }
                         }
                     }
+                    //verify rule horizontally
                     Position posLeft{pos.next(Direction::LEFT)};
                     vector<Entity> entitiesLeft{board.getEntities(posLeft)};
                     for (Entity entityLeft : entitiesLeft) {
@@ -293,10 +325,12 @@ void Game::reloadLevel(){
     board = p.first;
     currentLevel = p.second;
     scanRule();
+    notifyObservers();
 }
 
 void Game::restartLevel(){
     constructLevel(currentLevel);
+    notifyObservers();
 }
 
 int Game::getCurrentLevel() const{
