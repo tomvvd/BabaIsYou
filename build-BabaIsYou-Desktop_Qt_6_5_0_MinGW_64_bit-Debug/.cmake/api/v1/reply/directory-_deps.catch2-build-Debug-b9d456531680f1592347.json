@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/catch2-build",
+		"source" : "C:/Users/thoma/Documents/QtCreatorProjects/dev4/projet_dev4/build-BabaIsYou-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/_deps/catch2-src"
+	}
+}
