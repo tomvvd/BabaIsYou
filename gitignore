@@ -23,13 +23,13 @@ release/
 debug/
 
 # pas de dossier build-*
-build-*/
+**/build-*/
 
 # pas de fichier .user
 *.user
 
 # pas de fichier .user.*
-*.user.*
+**/*.user.*
 
 # pas de fichier Makefile.*
 Makefile.*
