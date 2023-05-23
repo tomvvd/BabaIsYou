@@ -20,6 +20,7 @@ add_executable(BabaIsYouTests
     ../src/Controller.cpp
     ../src/Position.cpp
     ../src/LevelLoader.h
+    ../src/LevelLoader.cpp
     ../src/Game.h
     ../src/Game.cpp
     ../src/Board.h

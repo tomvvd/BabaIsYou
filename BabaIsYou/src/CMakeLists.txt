@@ -13,6 +13,7 @@ add_executable(BabaIsYou
     Board.h
     Board.cpp
     LevelLoader.h
+    LevelLoader.cpp
     Rule.h
     Rule.cpp
     Game.h
