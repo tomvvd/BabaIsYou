@@ -5,10 +5,6 @@ Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0) } {
     scanRule();
 }
 
-/**
- * @brief Game::constructLevel
- * @param num
- */
 void Game::constructLevel(int num){
     currentLevel = num;
     this->board = LevelLoader::levelLoad(num);
@@ -16,11 +12,71 @@ void Game::constructLevel(int num){
     notifyObservers();
 }
 
+void Game::scanRule() {
+    rules.clear();
+    Rule limitRule{EntityNature::LIMIT, EntityNature::IS, EntityNature::STOP};
+    rules.push_back(limitRule);
+
+    static vector<EntityNature> validEntities {EntityNature::BABA, EntityNature::FLAG, EntityNature::GRASS, EntityNature::METAL, EntityNature::ROCK, EntityNature::WALL, EntityNature::WATER, EntityNature::LAVA};
+
+    for (int i = 1; i < board.getHeight() - 1; ++i) {
+        for (int j = 1; j < board.getWidth() - 1; ++j) {
+            Position pos{i, j};
+            vector<Entity> entities{board.getEntities(pos)};
+
+            for (int k = 0; k < entities.size(); ++k) {
+                if (entities[k].getNature() == EntityNature::IS) {
+                    checkVerticalRule(pos, validEntities);
+                    checkHorizontalRule(pos, validEntities);
+                }
+            }
+        }
+    }
+}
+
+void Game::checkVerticalRule(const Position& pos, const vector<EntityNature>& validEntities) {
+    Position posUp{pos.next(Direction::UP)};
+    vector<Entity> entitiesUp{board.getEntities(posUp)};
+
+    for (Entity entityUp : entitiesUp) {
+        if (entityUp.getType() == EntityType::TEXT && count(validEntities.begin(), validEntities.end(), entityUp.getNature())) {
+            Position posDown{pos.next(Direction::DOWN)};
+            vector<Entity> entitiesDown{board.getEntities(posDown)};
+
+            for (Entity entityDown : entitiesDown) {
+                if (entityDown.getType() == EntityType::TEXT && !(entityDown.getNature() == EntityNature::IS)) {
+                    Rule rule {entityUp.getNature(), EntityNature::IS, entityDown.getNature()};
+                    rules.push_back(rule);
+                }
+            }
+        }
+    }
+}
+
+void Game::checkHorizontalRule(const Position& pos, const vector<EntityNature>& validEntities) {
+    Position posLeft{pos.next(Direction::LEFT)};
+    vector<Entity> entitiesLeft{board.getEntities(posLeft)};
+
+    for (Entity entityLeft : entitiesLeft) {
+        if (entityLeft.getType() == EntityType::TEXT && count(validEntities.begin(), validEntities.end(), entityLeft.getNature())) {
+            Position posRight{pos.next(Direction::RIGHT)};
+            vector<Entity> entitiesRight{board.getEntities(posRight)};
+
+            for (Entity entityRight : entitiesRight) {
+                if (entityRight.getType() == EntityType::TEXT && !(entityRight.getNature() == EntityNature::IS)) {
+                    Rule rule {entityLeft.getNature(), EntityNature::IS, entityRight.getNature()};
+                    rules.push_back(rule);
+                }
+            }
+        }
+    }
+}
+
 void Game::move(Direction dir){
     vector<EntityNature> entitiesPlayer,entitiesPush, entitiesStop;
     bool hasBeenFound = false;
     //going through each rule
-    for(Rule rule : rules){
+    for(const Rule & rule : rules){
         if(rule.getObject() == EntityNature::YOU){
             //get all the entities that represents the actual player
             entitiesPlayer.push_back(rule.getSubject());
@@ -125,7 +181,7 @@ void Game::move(Direction dir){
 
 void Game::transformation(){
     //the entities that aren't eligble to be transformed
-    vector<EntityNature> exceptEntities {EntityNature::IS,EntityNature::KILL,EntityNature::PUSH,EntityNature::STOP,EntityNature::YOU,EntityNature::SINK,EntityNature::WIN};
+    static vector<EntityNature> exceptEntities {EntityNature::IS,EntityNature::KILL,EntityNature::PUSH,EntityNature::STOP,EntityNature::YOU,EntityNature::SINK,EntityNature::WIN};
     //going through each active rule
     for (Rule rule : rules) {
         if(count(exceptEntities.begin(),exceptEntities.end(),rule.getObject())==0){
@@ -218,7 +274,7 @@ void Game::isKill(){
     }
 }
 
-bool Game::isLevelOver(){
+bool Game::isWin(){
     bool res = false;
     vector<EntityNature> entitiesPlayer,entitiesWin;
     bool foundPlayers = false;
@@ -263,58 +319,6 @@ bool Game::isLevelOver(){
     return res;
 }
 
-void Game::scanRule(){
-    rules.clear();
-    Rule limitRule{EntityNature::LIMIT,EntityNature::IS,EntityNature::STOP};
-    rules.push_back(limitRule);
-    //check if there is a IS
-    for (int i = 1; i < board.getHeight()-1; ++i) {
-        for (int j = 1; j < board.getWidth()-1; ++j) {
-            Position pos{i,j};
-            vector<Entity> entities{board.getEntities(pos)};
-            for (int k = 0; k < entities.size(); ++k) {
-                if(entities[k].getNature()==EntityNature::IS){
-                    //verify rule vertically
-                    Position posUp{pos.next(Direction::UP)};
-                    vector<Entity> entitiesUp{board.getEntities(posUp)};
-                    for (Entity entityUp : entitiesUp) {
-                        if(entityUp.getType()==EntityType::TEXT){
-                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER,EntityNature::LAVA};
-                            if(count(valide.begin(),valide.end(),entityUp.getNature())){
-                                Position posDown{pos.next(Direction::DOWN)};
-                                vector<Entity> entitiesDown{board.getEntities(posDown)};
-                                for(Entity entityDown : entitiesDown){
-                                    if(entityDown.getType()==EntityType::TEXT && !(entityDown.getNature()==EntityNature::IS)){
-                                        Rule rule {entityUp.getNature(),EntityNature::IS,entityDown.getNature()};
-                                        rules.push_back(rule);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    //verify rule horizontally
-                    Position posLeft{pos.next(Direction::LEFT)};
-                    vector<Entity> entitiesLeft{board.getEntities(posLeft)};
-                    for (Entity entityLeft : entitiesLeft) {
-                        if(entityLeft.getType()==EntityType::TEXT){
-                            vector<EntityNature> valide {EntityNature::BABA,EntityNature::FLAG,EntityNature::GRASS,EntityNature::METAL,EntityNature::ROCK,EntityNature::WALL,EntityNature::WATER,EntityNature::LAVA};
-                            if(count(valide.begin(),valide.end(),entityLeft.getNature())){
-                                Position posRight{pos.next(Direction::RIGHT)};
-                                vector<Entity> entitiesRight{board.getEntities(posRight)};
-                                for(Entity entityRight : entitiesRight){
-                                    if(entityRight.getType()==EntityType::TEXT && !(entityRight.getNature()==EntityNature::IS)){
-                                        Rule rule {entityLeft.getNature(),EntityNature::IS,entityRight.getNature()};
-                                        rules.push_back(rule);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 void Game::saveLevel(){
     LevelLoader::saveLevel(board,currentLevel);
@@ -343,6 +347,6 @@ int Game::getBoardHeight() const{
 int Game::getBoardWidth() const{
     return board.getWidth();
 }
-vector<Entity> Game::getBoardEntities(Position pos){
+const vector<Entity>& Game::getBoardEntities(Position pos) const{
     return board.getEntities(pos);
 }

@@ -10,12 +10,12 @@
 using namespace std;
 
 class LevelLoader {
-    static Entity stringToEntity(string input);
-    static string entityToString(Entity entity);
+    static Entity stringToEntity(const string &input);
+    static string entityToString(const Entity &entity);
 
 public:
     static Board levelLoad(int nb);
-    static void saveLevel(Board board, int currentLevel);
+    static void saveLevel(const Board &board, int currentLevel);
     static pair<Board, int> reloadLevel();
 };
 

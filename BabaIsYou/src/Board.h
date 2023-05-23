@@ -16,9 +16,9 @@ public:
     Board(int height, int width);
     int getHeight() const;
     int getWidth() const;
-    vector<Entity> getEntities(Position pos);
-    void addEntity(Position pos, Entity entity);
-    void dropEntity(Position pos, Entity entity);
+    const vector<Entity> &getEntities(Position pos) const;
+    void addEntity(Position pos, const Entity& entity);
+    void dropEntity(Position pos, const Entity& entity);
 };
 
 #endif // BOARD_H

@@ -173,7 +173,7 @@ TEST_CASE( "Test of Game") {
         game.move(Direction::RIGHT);
         game.move(Direction::RIGHT);
         game.move(Direction::DOWN);
-        REQUIRE(game.isLevelOver());
+        REQUIRE(game.isWin());
     }
     SECTION("Test Method move(...) : break the rule WALL IS STOP"){
         game.move(Direction::LEFT);

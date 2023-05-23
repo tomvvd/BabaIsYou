@@ -38,7 +38,7 @@ void Controller::start(){
         else{
             cout << "This isn't a valid command, pleasy try again" << endl;
         }
-        if(game.isLevelOver()){
+        if(game.isWin()){
             if(game.getCurrentLevel()+1!=5){
                 game.constructLevel(game.getCurrentLevel()+1);
             }

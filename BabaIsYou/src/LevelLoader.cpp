@@ -1,6 +1,6 @@
 #include "levelloader.h"
 
-Entity LevelLoader::stringToEntity(string input) {
+Entity LevelLoader::stringToEntity(const string& input) {
     Entity res{EntityNature::BABA,EntityType::ELEMENT};
     if (input == "baba") {
         res = Entity{EntityNature::BABA,EntityType::ELEMENT};
@@ -74,7 +74,7 @@ Entity LevelLoader::stringToEntity(string input) {
     return res;
 }
 
-string LevelLoader::entityToString(Entity entity) {
+string LevelLoader::entityToString(const Entity& entity) {
     EntityType entityType = entity.getType();
     EntityNature entityNature = entity.getNature();
     string res;
@@ -212,7 +212,7 @@ Board LevelLoader::levelLoad(int nb) {
     return board;
 }
 
-void LevelLoader::saveLevel(Board board, int currentLevel) {
+void LevelLoader::saveLevel(const Board& board, int currentLevel) {
     vector<string> res;
     res.push_back(to_string(currentLevel));
     int height = board.getHeight();

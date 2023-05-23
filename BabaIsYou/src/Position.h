@@ -13,7 +13,7 @@ public:
     Position(int row, int column);
     int getRow() const;
     int getColumn() const;
-    Position next(Direction dir);
+    Position next(Direction dir) const;
 };
 
 #endif // POSITION_H

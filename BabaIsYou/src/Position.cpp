@@ -10,7 +10,7 @@ int Position::getColumn() const{
     return this->column_;
 }
 
-Position Position::next(Direction dir){
+Position Position::next(Direction dir) const{
     if(Direction::DOWN == dir){
         return Position{this->row_+1,this->column_};
     }

@@ -15,9 +15,9 @@ class Rule{
         EntityNature object;
     public:
         Rule(EntityNature subject, EntityNature operation, EntityNature object);
-        EntityNature getSubject();
-        EntityNature getOperation();
-        EntityNature getObject();
+        EntityNature getSubject() const;
+        EntityNature getOperation() const;
+        EntityNature getObject() const;
 };
 
 

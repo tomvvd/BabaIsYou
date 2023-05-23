@@ -15,27 +15,27 @@ int Board::getWidth() const{
     return width_;
 }
 
-vector<Entity> Board::getEntities(Position pos){
-    return entities_.at(pos.getRow())
-            .at(pos.getColumn());
+const vector<Entity>& Board::getEntities(Position pos) const {
+    return entities_.at(pos.getRow()).at(pos.getColumn());
 }
 
-void Board::addEntity(Position pos, Entity entity){
-    entities_.at(pos.getRow())
-            .at(pos.getColumn())
-            .push_back(entity);
+void Board::addEntity(Position pos, const Entity& entity){
+    entities_.at(pos.getRow()).at(pos.getColumn()).push_back(entity);
 }
 
-void Board::dropEntity(Position pos, Entity entity){
-    //si je fais ça , c'est parce que le vector n'est pas une référence comme en java, si on l'assigne , une copie est créée
-
-    bool stop {false};
-    for (int i = 0; i < entities_.at(pos.getRow()).at(pos.getColumn()).size() && !stop; ++i) {
-        if(entities_.at(pos.getRow()).at(pos.getColumn()).at(i).getNature() == entity.getNature()
-                && entities_.at(pos.getRow()).at(pos.getColumn()).at(i).getType() == entity.getType()){
-            entities_.at(pos.getRow()).at(pos.getColumn()).erase(entities_.at(pos.getRow()).at(pos.getColumn()).begin() + i);
-            --i;
-            stop = true;
+void Board::dropEntity(Position pos, const Entity& entity) {
+    vector<Entity>& entities = entities_.at(pos.getRow()).at(pos.getColumn());
+    for (auto it = entities.begin(); it != entities.end(); ++it) {
+        if (it->getNature() == entity.getNature() && it->getType() == entity.getType()) {
+            entities.erase(it);
+            break;
         }
     }
 }
+
+
+
+
+
+
+
