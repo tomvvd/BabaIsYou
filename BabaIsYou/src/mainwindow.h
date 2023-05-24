@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtWidgets/qgraphicsscene.h>
+#include <QtWidgets/qgridlayout.h>
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -19,7 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QGraphicsScene _scene; //the scene of the QGraphicsView
+    QGridLayout _grid;
 };
 
 #endif // MAINWINDOW_H
