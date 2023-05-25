@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "../game/Game.h"
+#include "boardobserver.h"
+#include <QKeyEvent>
 
 namespace Ui {
 class MWBaba;
@@ -16,9 +18,16 @@ public:
     explicit MWBaba(Game & game,QWidget *parent = nullptr);
     ~MWBaba();
 
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+
 private:
     Ui::MWBaba *ui;
-    Game & game;
+
+    Game & game_;
+
+    BoardObserver *boardobserver_;
 
     void connexion();
 

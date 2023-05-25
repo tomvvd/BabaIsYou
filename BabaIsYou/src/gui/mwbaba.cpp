@@ -4,11 +4,18 @@
 MWBaba::MWBaba(Game & game, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MWBaba),
-    game{game}
+    game_{game}
 {
     ui->setupUi(this);
-
     connexion();
+
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::Window, Qt::black);
+    this->setAutoFillBackground(true);
+    this->setPalette(palette);
+
+    boardobserver_ = new BoardObserver(game);
+    ui->centralwidget->setLayout(boardobserver_);
 }
 
 void MWBaba::connexion(){
@@ -19,15 +26,39 @@ void MWBaba::connexion(){
 }
 
 void MWBaba::restart(){
-    game.restartLevel();
+    game_.restartLevel();
 }
 void MWBaba::save(){
-    game.saveLevel();
+    game_.saveLevel();
 }
 void MWBaba::reload(){
-    game.reloadLevel();
+    game_.reloadLevel();
 }
 
+void MWBaba::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Left) {
+        game_.move(Direction::LEFT);
+    }
+    else if (event->key() == Qt::Key_Right) {
+        game_.move(Direction::RIGHT);
+    }
+    else if (event->key() == Qt::Key_Up) {
+        game_.move(Direction::UP);
+    }
+    else if (event->key() == Qt::Key_Down) {
+        game_.move(Direction::DOWN);
+    }
+
+    if(game_.isWin()){
+        if(game_.getCurrentLevel()+1!=5){
+            game_.constructLevel(game_.getCurrentLevel()+1);
+        }
+    }
+
+    // Appel l'implémentation de la classe de base
+    QMainWindow::keyPressEvent(event);
+}
 
 MWBaba::~MWBaba()
 {

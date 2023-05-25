@@ -32,6 +32,8 @@ add_executable(BabaIsYou
     gui/mwbaba.ui
     gui/mwbaba.h
     gui/mwbaba.cpp
+    gui/boardobserver.h
+    gui/boardobserver.cpp
 )
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
