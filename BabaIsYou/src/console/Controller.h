@@ -1,7 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "Game.h"
+#include "../game/Game.h"
 #include "View.h"
 
 class Controller{

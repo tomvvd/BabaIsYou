@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "LevelLoader.h"
+#include "../../BabaIsYou/src/game/levelloader.h"
 
 TEST_CASE( "Test of LevelLoader") {
     Board board{LevelLoader::levelLoad(0)};

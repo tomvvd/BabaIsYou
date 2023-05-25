@@ -2,8 +2,8 @@
 #define GAME_H
 
 #include "Board.h"
-#include "Observable.h"
-#include "Observer.h"
+#include "../util/Observable.h"
+#include "../util/Observer.h"
 #include "Position.h"
 #include "Rule.h"
 #include <map>

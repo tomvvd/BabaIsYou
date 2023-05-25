@@ -1,8 +1,8 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include "Game.h"
-#include "Observer.h"
+#include "../game/Game.h"
+#include "../util/Observer.h"
 #include <iomanip>
 #include <iostream>
 #include <sstream>

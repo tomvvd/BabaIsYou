@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "Position.h"
+#include "../../BabaIsYou/src/game/Position.h"
 
 TEST_CASE( "Test of Position") {
     Position pos{1,1};

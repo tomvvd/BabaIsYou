@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "Game.h"
+#include "../../BabaIsYou/src/game/Game.h"
 
 TEST_CASE( "Test of Game") {
     Game game;
