@@ -1,5 +1,6 @@
 #include "boardobserver.h"
 #include <QLabel>
+#include <QPainter>
 
 std::map<std::string, QString> BoardObserver::entityImagePathMap = {
     {"B", "../sprites/baba.png"},
@@ -32,29 +33,28 @@ BoardObserver::BoardObserver(Game& game, QWidget* parent) : QGridLayout(parent),
     game_.registerObserver(this);
 
     //réduire les espaces entre les éléments
-    //this->setSpacing(0);
+    this->setSpacing(0);
 
     for (int row = 0; row < game.getBoardHeight(); ++row) {
         for (int col = 0; col < game.getBoardWidth(); ++col) {
             // Get the entities at the current position
             vector<Entity> entities = game.getBoardEntities(Position{row, col});
 
-            // Create a container widget to hold the labels for multiple entities at the same position
-            QWidget* entityWidget = new QWidget();
-            QHBoxLayout* entityLayout = new QHBoxLayout(entityWidget);
-            entityLayout->setSpacing(0);
+            QLabel* label = new QLabel();
 
-            // Add a label for each entity at the current position
+            QImage baseImage("../sprites/transparent.png");
+            QPainter painter(&baseImage);
+
             for (const Entity& entity : entities) {
-                QLabel* label = new QLabel();
-                QString imagePath = entityImagePathMap[entity.to_string()];
-                QPixmap pixmap(imagePath);
-                label->setPixmap(pixmap);
-                entityLayout->addWidget(label);
-            }
+                // Load the image for the entity
+                QImage image(entityImagePathMap[entity.to_string()]);
 
-            // Add the entity widget to the grid layout
-            this->addWidget(entityWidget, row, col);
+                // Overlay
+                painter.drawImage(0, 0, image);
+            }
+            painter.end();
+            label->setPixmap(QPixmap::fromImage(baseImage));
+            this->addWidget(label, row, col);
         }
     }
 }
@@ -79,22 +79,21 @@ void BoardObserver::update(const Observable* subject) {
             // Get the entities at the current position
             vector<Entity> entities = gameSubject->getBoardEntities(Position{ row, col });
 
-            // Create a container widget to hold the labels for multiple entities at the same position
-            QWidget* entityWidget = new QWidget();
-            QHBoxLayout* entityLayout = new QHBoxLayout(entityWidget);
-            entityLayout->setSpacing(0);
+            QLabel* label = new QLabel();
 
-            // Add a label for each entity at the current position
+            QImage baseImage("../sprites/transparent.png");
+            QPainter painter(&baseImage);
+
             for (const Entity& entity : entities) {
-                QLabel* label = new QLabel();
-                QString imagePath = entityImagePathMap[entity.to_string()];
-                QPixmap pixmap(imagePath);
-                label->setPixmap(pixmap);
-                entityLayout->addWidget(label);
-            }
+                // Load the image for the entity
+                QImage image(entityImagePathMap[entity.to_string()]);
 
-            // Add the entity widget to the grid layout
-            this->addWidget(entityWidget, row, col);
+                // Overlay
+                painter.drawImage(0, 0, image);
+            }
+            painter.end();
+            label->setPixmap(QPixmap::fromImage(baseImage));
+            this->addWidget(label, row, col);
         }
     }
 }
