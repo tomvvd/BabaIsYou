@@ -32,7 +32,7 @@ public:
     int getCurrentLevel() const;
     int getBoardHeight() const;
     int getBoardWidth() const;
-    const vector<Entity> &getBoardEntities(Position pos) const;
+    const vector<Entity> &getBoardEntities(const Position & pos) const;
 };
 
 #endif // GAME_H

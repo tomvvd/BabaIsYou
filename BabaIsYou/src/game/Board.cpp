@@ -15,15 +15,15 @@ int Board::getWidth() const{
     return width_;
 }
 
-const vector<Entity>& Board::getEntities(Position pos) const {
+const vector<Entity>& Board::getEntities(const Position & pos) const {
     return entities_.at(pos.getRow()).at(pos.getColumn());
 }
 
-void Board::addEntity(Position pos, const Entity& entity){
+void Board::addEntity(const Position & pos, const Entity& entity){
     entities_.at(pos.getRow()).at(pos.getColumn()).push_back(entity);
 }
 
-void Board::dropEntity(Position pos, const Entity& entity) {
+void Board::dropEntity(const Position & pos, const Entity& entity) {
     vector<Entity>& entities = entities_.at(pos.getRow()).at(pos.getColumn());
     for (auto it = entities.begin(); it != entities.end(); ++it) {
         if (it->getNature() == entity.getNature() && it->getType() == entity.getType()) {
