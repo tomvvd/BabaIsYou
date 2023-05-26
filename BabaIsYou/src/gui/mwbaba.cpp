@@ -1,5 +1,6 @@
 #include "mwbaba.h"
 #include "ui_mwbaba.h"
+#include "endwindow.h"
 
 MWBaba::MWBaba(Game & game, QWidget *parent) :
     QMainWindow(parent),
@@ -53,6 +54,13 @@ void MWBaba::keyPressEvent(QKeyEvent *event)
     if(game_.isWin()){
         if(game_.getCurrentLevel()+1!=5){
             game_.constructLevel(game_.getCurrentLevel()+1);
+        }
+        else{
+            EndWindow *endwindow = new EndWindow();
+            this->setCentralWidget(endwindow);
+            ui->action_Restart->setEnabled(false);
+            ui->action_Reload->setEnabled(false);
+            ui->action_Save->setEnabled(false);
         }
     }
 
