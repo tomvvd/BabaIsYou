@@ -3,7 +3,6 @@
 
 #include "Board.h"
 #include "../util/Observable.h"
-#include "../util/Observer.h"
 #include "Position.h"
 #include "Rule.h"
 #include <map>
@@ -13,11 +12,12 @@ private:
     Board board;
     vector<Rule> rules;
     int currentLevel;
-    vector<Observer *> observers;
+
+    static vector<EntityNature> validEntities;
 
     void scanRule();
-    void checkVerticalRule(const Position& pos, const vector<EntityNature>& validEntities);
-    void checkHorizontalRule(const Position& pos, const vector<EntityNature>& validEntities);
+    void checkVerticalRule(const Position& pos);
+    void checkHorizontalRule(const Position& pos);
     void isSink();
     void transformation();
     void isKill();

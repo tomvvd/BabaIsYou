@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "LevelLoader.h"
 
+vector<EntityNature> Game::validEntities {EntityNature::BABA, EntityNature::FLAG, EntityNature::GRASS, EntityNature::METAL, EntityNature::ROCK, EntityNature::WALL, EntityNature::WATER, EntityNature::LAVA};
+
 Game::Game() : currentLevel{0}, board{LevelLoader::levelLoad(0) } {
     scanRule();
 }
@@ -17,8 +19,6 @@ void Game::scanRule() {
     Rule limitRule{EntityNature::LIMIT, EntityNature::IS, EntityNature::STOP};
     rules.push_back(limitRule);
 
-    static vector<EntityNature> validEntities {EntityNature::BABA, EntityNature::FLAG, EntityNature::GRASS, EntityNature::METAL, EntityNature::ROCK, EntityNature::WALL, EntityNature::WATER, EntityNature::LAVA};
-
     for (int i = 1; i < board.getHeight() - 1; ++i) {
         for (int j = 1; j < board.getWidth() - 1; ++j) {
             Position pos{i, j};
@@ -26,15 +26,15 @@ void Game::scanRule() {
 
             for (int k = 0; k < entities.size(); ++k) {
                 if (entities[k].getNature() == EntityNature::IS) {
-                    checkVerticalRule(pos, validEntities);
-                    checkHorizontalRule(pos, validEntities);
+                    checkVerticalRule(pos);
+                    checkHorizontalRule(pos);
                 }
             }
         }
     }
 }
 
-void Game::checkVerticalRule(const Position& pos, const vector<EntityNature>& validEntities) {
+void Game::checkVerticalRule(const Position& pos) {
     Position posUp{pos.next(Direction::UP)};
     vector<Entity> entitiesUp{board.getEntities(posUp)};
 
@@ -53,7 +53,7 @@ void Game::checkVerticalRule(const Position& pos, const vector<EntityNature>& va
     }
 }
 
-void Game::checkHorizontalRule(const Position& pos, const vector<EntityNature>& validEntities) {
+void Game::checkHorizontalRule(const Position& pos) {
     Position posLeft{pos.next(Direction::LEFT)};
     vector<Entity> entitiesLeft{board.getEntities(posLeft)};
 
@@ -96,60 +96,60 @@ void Game::move(Direction dir){
         vector<pair<Entity,Position>> movePlayers;
         for (int i = 1; i < board.getHeight()-1; ++i) {
             for (int j = 1; j < board.getWidth()-1; ++j) {
+
                 Position pos {i,j};
                 vector<Entity> entities = board.getEntities(pos);
-                for (EntityNature player:entitiesPlayer) {
-                    for (Entity entity : entities) {
-                        if(entity.getType()==EntityType::ELEMENT && entity.getNature()==player){
-                            //stop the move
-                            bool stop = false;
-                            //valid the move
-                            bool ok = false;
-                            //index of the free square if there are elements to push
-                            int cpt = 1;
-                            Position next{pos.next(dir)};
-                            while(!stop && !ok){
-                                vector<Entity> nextEntities = board.getEntities(next);
-                                if(!nextEntities.empty()){
-                                    for (Entity nextEntity : nextEntities) {
-                                        if(count(entitiesStop.begin(),entitiesStop.end(),nextEntity.getNature()) && !(nextEntity.getType()==EntityType::TEXT)){
-                                            stop = true;
-                                        }
-                                        else if(count(entitiesPush.begin(),entitiesPush.end(),nextEntity.getNature())==0 && !(nextEntity.getType()==EntityType::TEXT)){
-                                            ok = true;
-                                        }
-                                        else{
-                                            next = next.next(dir);
-                                            cpt++;
-                                        }
+
+                for (Entity entity : entities) {
+                    if(entity.getType()==EntityType::ELEMENT && count(entitiesPlayer.begin(), entitiesPlayer.end(), entity.getNature())){
+                        //stop the move
+                        bool stop = false;
+                        //valid the move
+                        bool ok = false;
+                        //index of the free square if there are elements to push
+                        int cpt = 1;
+                        Position next{pos.next(dir)};
+                        while(!stop && !ok){
+                            vector<Entity> nextEntities = board.getEntities(next);
+                            if(!nextEntities.empty()){
+                                for (Entity nextEntity : nextEntities) {
+                                    if(count(entitiesStop.begin(),entitiesStop.end(),nextEntity.getNature()) && !(nextEntity.getType()==EntityType::TEXT)){
+                                        stop = true;
                                     }
-                                }else{
-                                    ok = true;
+                                    else if(count(entitiesPush.begin(),entitiesPush.end(),nextEntity.getNature())==0 && !(nextEntity.getType()==EntityType::TEXT)){
+                                        ok = true;
+                                    }
+                                    else{
+                                        next = next.next(dir);
+                                        cpt++;
+                                    }
                                 }
+                            }else{
+                                ok = true;
                             }
-                            //if you are not blocked
-                            if(!stop){
-                                while (cpt>1) {
-                                    Position pos1 = pos;
-                                    for (int k = 0; k < cpt; ++k) {
-                                        pos1 = pos1.next(dir);
-                                    }
-                                    Position pos2 = pos;
-                                    for (int k = 0; k < cpt-1; ++k) {
-                                        pos2 = pos2.next(dir);
-                                    }
-                                    vector<Entity> lol = board.getEntities(pos2);
-                                    for (Entity l : lol) {
-                                        if(count(entitiesPush.begin(),entitiesPush.end(),l.getNature()) || l.getType()==EntityType::TEXT){
-                                            board.addEntity(pos1,l);
-                                            board.dropEntity(pos2,l);
-                                        }
-                                    }
-                                    cpt--;
+                        }
+                        //if you are not blocked
+                        if(!stop){
+                            while (cpt>1) {
+                                Position pos1 = pos;
+                                for (int k = 0; k < cpt; ++k) {
+                                    pos1 = pos1.next(dir);
                                 }
-                                //move the player later
-                                movePlayers.push_back(make_pair(entity,pos));
+                                Position pos2 = pos;
+                                for (int k = 0; k < cpt-1; ++k) {
+                                    pos2 = pos2.next(dir);
+                                }
+                                vector<Entity> lol = board.getEntities(pos2);
+                                for (Entity l : lol) {
+                                    if(count(entitiesPush.begin(),entitiesPush.end(),l.getNature()) || l.getType()==EntityType::TEXT){
+                                        board.addEntity(pos1,l);
+                                        board.dropEntity(pos2,l);
+                                    }
+                                }
+                                cpt--;
                             }
+                            //move the player later
+                            movePlayers.push_back(make_pair(entity,pos));
                         }
                     }
                 }
