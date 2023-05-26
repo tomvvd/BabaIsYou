@@ -32,7 +32,6 @@ std::map<std::string, QString> BoardObserver::entityImagePathMap = {
 BoardObserver::BoardObserver(Game& game, QWidget* parent) : QGridLayout(parent), game_{game} {
     game_.registerObserver(this);
 
-    //réduire les espaces entre les éléments
     this->setSpacing(0);
 
     for (int row = 0; row < game.getBoardHeight(); ++row) {
@@ -60,14 +59,13 @@ BoardObserver::BoardObserver(Game& game, QWidget* parent) : QGridLayout(parent),
 }
 
 void BoardObserver::update(const Observable* subject) {
-    // Vérifier que le sujet d'observation est bien un objet de type Game
+    // Check that the subject of observation is indeed a Game type object
     const Game* gameSubject = dynamic_cast<const Game*>(subject);
     if (gameSubject == nullptr) {
-        // Le sujet d'observation n'est pas du bon type, on ne fait rien
         return;
     }
 
-    // Effacer tous les widgets du layout
+    // Delete all widgets from the layout
     QLayoutItem* item;
     while ((item = this->takeAt(0)) != nullptr) {
         delete item->widget();
@@ -100,7 +98,5 @@ void BoardObserver::update(const Observable* subject) {
 
 BoardObserver::~BoardObserver()
 {
-    // Détacher l'observateur du sujet d'observation
     game_.unregisterObserver(this);
-    // Le destructeur de QGridLayout sera appelé automatiquement
 }

@@ -156,7 +156,6 @@ string LevelLoader::entityToString(const Entity& entity) {
 
 Board LevelLoader::levelLoad(int nb) {
     stringstream ss;
-    //depending on where the build directory is located, you will have to change this relative path
     ss << "../levels/level_" << nb << ".txt";
     string filename = ss.str();
     ifstream file(filename);
@@ -169,10 +168,10 @@ Board LevelLoader::levelLoad(int nb) {
         file.close();
     }
     else {
-        cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
+        cerr << "Unable to open file" << filename << std::endl;
     }
 
-    //construction du board
+    //board construction
     vector<string> sizeBoard;
     stringstream ssBoard{lines.at(0)};
     string token;
@@ -183,7 +182,7 @@ Board LevelLoader::levelLoad(int nb) {
     int row{stoi(sizeBoard.at(1))+2};
     Board board {row,column};
 
-    //remplissage du board
+    //board filling
     for (int i = 0; i < column; ++i) {
         Position pos1 {0,i};
         board.addEntity(pos1,Entity{EntityNature::LIMIT,EntityType::ELEMENT});
@@ -223,7 +222,7 @@ void LevelLoader::saveLevel(const Board& board, int currentLevel) {
     for (int i = 1; i < height-1; ++i) {
         for (int j = 1; j < width-1; ++j) {
             Position pos{i,j};
-            vector<Entity> entities = board.getEntities(pos);
+            const vector<Entity> & entities = board.getEntities(pos);
             for (int k = 0; k < entities.size(); ++k) {
                 stringstream ss2;
                 ss2 << entityToString(entities[k]) << " " << to_string(j-1) << " " << to_string(i-1);
@@ -231,7 +230,6 @@ void LevelLoader::saveLevel(const Board& board, int currentLevel) {
             }
         }
     }
-    //depending on where the build directory is located, you will have to change this relative path
     ofstream myFile("../levels/backup.txt", ios::out | ios::trunc);
 
     if (myFile.is_open()) {
@@ -247,7 +245,6 @@ void LevelLoader::saveLevel(const Board& board, int currentLevel) {
 }
 
 pair<Board, int> LevelLoader::reloadLevel() {
-    //depending on where the build directory is located, you will have to change this relative path
     string filename{"../levels/backup.txt"};
     ifstream file(filename);
     vector<string> lines;
@@ -259,12 +256,12 @@ pair<Board, int> LevelLoader::reloadLevel() {
         file.close();
     }
     else {
-        cerr << "Impossible d'ouvrir le fichier " << filename << std::endl;
+        cerr << "Unable to open file" << filename << std::endl;
     }
 
     int currentLevel{stoi(lines.at(0))};
 
-    //construction du board
+    //board construction
     vector<string> sizeBoard;
     stringstream ssBoard{lines.at(1)};
     string token;
@@ -275,7 +272,7 @@ pair<Board, int> LevelLoader::reloadLevel() {
     int row{stoi(sizeBoard.at(1))+2};
     Board board {row,column};
 
-    //remplissage du board
+    //board filling
     for (int i = 0; i < column; ++i) {
         Position pos1 {0,i};
         board.addEntity(pos1,Entity{EntityNature::LIMIT,EntityType::ELEMENT});

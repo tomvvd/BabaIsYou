@@ -64,7 +64,6 @@ void MWBaba::keyPressEvent(QKeyEvent *event)
         }
     }
 
-    // Appel l'implémentation de la classe de base
     QMainWindow::keyPressEvent(event);
 }
 

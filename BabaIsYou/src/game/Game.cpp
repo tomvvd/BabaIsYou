@@ -170,7 +170,6 @@ void Game::move(Direction dir){
                 board.dropEntity(mp.second,mp.first);
             }
         }
-        //verify the rules (create, or delete)
         scanRule();
         transformation();
         isSink();

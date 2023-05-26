@@ -8,14 +8,14 @@ using namespace std;
 
 int main(int argc, char * argv[])
 {
-    //Partie console
+    //Console
     /*Game game {};
     View view{game};
     game.registerObserver(&view);
     Controller controller{game,view};
     controller.start();*/
 
-    //Partie interface graphique
+    //GUI
     QApplication application(argc,argv);
 
     Game game {};
