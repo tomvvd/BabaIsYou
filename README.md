@@ -1,6 +1,6 @@
 # Baba Is You
 
-Welcome to the README file of our project : Baba Is You. This document provides a brief description of the game and information about the gameplay.
+Welcome to the README file of our project : Baba Is You. This document provides a brief description of the game and information about the gameplay. This project is coded in C++.
 
 ## Description
 
